@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     public float yVector;
     Rigidbody _rb;
     public GameObject platform;
+    bool grounded = true;
 
     void ClearLevelPrefs(){
         PlayerPrefs.DeleteKey("exitName");
@@ -31,39 +32,45 @@ public class Player : MonoBehaviour
     }
 
     void OnCollisionEnter(Collision collision){
-
+        if (collision.gameObject.tag == "Ground"){
+            grounded = true;
+        }
     }
 
     void OnCollisionExit(Collision collision){
-        
+        if (collision.gameObject.tag == "Ground"){
+            grounded = false;
+        }
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-            xVector = Input.GetAxis("Horizontal");
-            yVector = Input.GetAxis("Vertical");
+        xVector = Input.GetAxis("Horizontal");
+        yVector = Input.GetAxis("Vertical");
 
-            //assuming we only using the single camera:
-            var camera = UnityEngine.Camera.main;
+        //assuming we only using the single camera:
+        var camera = UnityEngine.Camera.main;
     
-            //camera forward and right vectors:
-            var forward = camera.transform.forward;
-            var right = camera.transform.right;
+        //camera forward and right vectors:
+        var forward = camera.transform.forward;
+        var right = camera.transform.right;
     
-            //project forward and right vectors on the horizontal plane (y = 0)
+        //project forward and right vectors on the horizontal plane (y = 0)
+        if (grounded){
             forward.y = 0f;
             right.y = 0f;
-            forward.Normalize();
-            right.Normalize();
+        }
+        
+        forward.Normalize();
+        right.Normalize();
 
-            var moveDir = ( yVector * forward + xVector * right ) * moveSpeed;
+        var moveDir = ( yVector * forward + xVector * right ) * moveSpeed;
 
-            //this.transform.Translate(Vector3.forward * yVector * Time.deltaTime);
-            //this.transform.Translate(Vector3.right * xVector * Time.deltaTime);
+        //this.transform.Translate(Vector3.forward * yVector * Time.deltaTime);
+        //this.transform.Translate(Vector3.right * xVector * Time.deltaTime);
 
-            //_rb.MovePosition(transform.position + moveDir * Time.deltaTime);
-            _rb.velocity = moveDir * Time.deltaTime;
-
+        //_rb.MovePosition(transform.position + moveDir * Time.deltaTime);
+        _rb.velocity = moveDir * Time.deltaTime;
     }
 }

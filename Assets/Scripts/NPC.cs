@@ -9,12 +9,11 @@ public class NPC : MonoBehaviour
 {
     bool inRange = false;
     public string givenName;
-    string greeting;
+    public List<string> script = new List<string>();
     public GameObject canvas;
     GameObject currentCanvas;
     bool canvasActive = false;
-    public Dialogue script;
-    private int dialogueIndex = 0;
+    int dialogueIndex = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -25,13 +24,12 @@ public class NPC : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (inRange && dialogueIndex == 0 && !canvasActive && Input.GetKeyDown("space")){
-            Debug.Log(greeting);
+        if (inRange && !canvasActive && Input.GetKeyDown("space")){
             currentCanvas = Instantiate(canvas, new Vector3(0, 0, 0), Quaternion.identity);
             DisplayNextDialogue();
             canvasActive = true;
         }
-        else if (canvasActive && dialogueIndex < script.sentences.Length && Input.GetKeyDown("space")){
+        else if (inRange && canvasActive && dialogueIndex < script.Count && Input.GetKeyDown("space")){
             DisplayNextDialogue();
         }
         else if (canvasActive && Input.GetKeyDown("space")){
@@ -47,7 +45,7 @@ public class NPC : MonoBehaviour
         nameText.text = givenName;
         GameObject dialogueTextObject = GameObject.Find("Text");
         TextMeshProUGUI dialogueText = dialogueTextObject.GetComponent<TextMeshProUGUI>();
-        dialogueText.text = script.sentences[dialogueIndex];
+        dialogueText.text = script[dialogueIndex];
         dialogueIndex++;
     }
 
