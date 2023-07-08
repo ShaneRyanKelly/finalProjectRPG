@@ -128,9 +128,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9694e72e0d1c08743bbdec086125135b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
+  moveSpeed: 500
   rotateSpeed: 75
   xVector: 0
   yVector: 0
-  JumpVelocity: 5
   platform: {fileID: 0}

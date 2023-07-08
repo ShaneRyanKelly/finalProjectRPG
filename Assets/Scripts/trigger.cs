@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class trigger : MonoBehaviour
 {
-    
+    public string exitName;
+    public Vector3 exitCoord;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,25 +20,15 @@ public class trigger : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider myCollider){
-        Scene scene = SceneManager.GetActiveScene();
-        Debug.Log(this.name);
-        //Debug.Log(lastPosition);
+        SetPreferences();
         SceneManager.LoadScene(this.name);
-        /*if (scene.name == "SampleScene")
-        {
-            SceneManager.LoadScene("SampleScene1-2");
-        }
-        else if (scene.name == "SampleScene1-2")
-        {
-            SceneManager.LoadScene("SampleScene1-3");
-        }
-        else if (scene.name == "SampleScene1-3")
-        {
-            SceneManager.LoadScene("SampleScene1-4");
-        }
-        else if (scene.name == "SampleScene1-4")
-        {
-            SceneManager.LoadScene("SampleScene");
-        }*/
+    }
+
+    void SetPreferences(){
+        Scene scene = SceneManager.GetActiveScene();
+        PlayerPrefs.SetString("exitName", this.name);
+        PlayerPrefs.SetFloat("x", exitCoord.x);
+        PlayerPrefs.SetFloat("y", exitCoord.y);
+        PlayerPrefs.SetFloat("z", exitCoord.z);
     }
 }

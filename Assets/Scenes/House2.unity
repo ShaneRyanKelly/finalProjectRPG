@@ -563,6 +563,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 737cde331d60a5f43b2c704635a807da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exitName: Main
+  exitCoord: {x: 26, y: 1, z: 10}
 --- !u!65 &937882815
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -574,7 +576,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 10, y: 2.220446e-16, z: 10}
+  m_Size: {x: 10, y: 10, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!64 &937882816
 MeshCollider:

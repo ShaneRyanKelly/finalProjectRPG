@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 40845238}
   m_Layer: 0
   m_Name: Wall4
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -332,7 +332,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 10, y: 2.220446e-16, z: 10}
+  m_Size: {x: 10, y: 10, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &188174101
 MonoBehaviour:
@@ -346,6 +346,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 737cde331d60a5f43b2c704635a807da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exitName: Main
+  exitCoord: {x: 6, y: 1, z: -10}
 --- !u!1 &407440850
 GameObject:
   m_ObjectHideFlags: 0
@@ -452,9 +454,10 @@ GameObject:
   - component: {fileID: 420247020}
   - component: {fileID: 420247019}
   - component: {fileID: 420247018}
+  - component: {fileID: 420247022}
   m_Layer: 0
   m_Name: Wall0
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -538,6 +541,19 @@ Transform:
   m_Father: {fileID: 1576987238}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!65 &420247022
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 420247017}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 14.588562, y: 1, z: 20}
+  m_Center: {x: -0.20571923, y: -1.6155871e-27, z: -0.00000047683716}
 --- !u!1 &627100191
 GameObject:
   m_ObjectHideFlags: 0
@@ -552,7 +568,7 @@ GameObject:
   - component: {fileID: 627100192}
   m_Layer: 0
   m_Name: Wall2
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -648,6 +664,7 @@ GameObject:
   - component: {fileID: 847502548}
   - component: {fileID: 847502547}
   - component: {fileID: 847502546}
+  - component: {fileID: 847502550}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
@@ -734,6 +751,19 @@ Transform:
   m_Father: {fileID: 1576987238}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &847502550
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 847502545}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 20, y: 0.1, z: 20}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1231316687
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -741,13 +771,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1717592507518764427, guid: 98a535bf37df23b4dae604363e50b9a2, type: 3}
+      propertyPath: m_Radius
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1717592507518764427, guid: 98a535bf37df23b4dae604363e50b9a2, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1717592507518764430, guid: 98a535bf37df23b4dae604363e50b9a2, type: 3}
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1717592507518764430, guid: 98a535bf37df23b4dae604363e50b9a2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9
+      value: -8.03
       objectReference: {fileID: 0}
     - target: {fileID: 1717592507518764430, guid: 98a535bf37df23b4dae604363e50b9a2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -784,6 +822,18 @@ PrefabInstance:
     - target: {fileID: 1717592507518764430, guid: 98a535bf37df23b4dae604363e50b9a2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1717592507518764431, guid: 98a535bf37df23b4dae604363e50b9a2, type: 3}
+      propertyPath: m_Constraints
+      value: 116
+      objectReference: {fileID: 0}
+    - target: {fileID: 1717592507518764431, guid: 98a535bf37df23b4dae604363e50b9a2, type: 3}
+      propertyPath: m_Interpolate
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1717592507518764431, guid: 98a535bf37df23b4dae604363e50b9a2, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1717592507518764437, guid: 98a535bf37df23b4dae604363e50b9a2, type: 3}
       propertyPath: m_Name
@@ -843,7 +893,7 @@ GameObject:
   - component: {fileID: 1831365589}
   m_Layer: 0
   m_Name: Wall1
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -938,28 +988,14 @@ GameObject:
   - component: {fileID: 1981861041}
   - component: {fileID: 1981861040}
   - component: {fileID: 1981861039}
-  - component: {fileID: 1981861038}
+  - component: {fileID: 1981861042}
   m_Layer: 0
   m_Name: Wall3
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!64 &1981861038
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1981861037}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &1981861039
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1025,6 +1061,19 @@ Transform:
   m_Father: {fileID: 1576987238}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: -90}
+--- !u!65 &1981861042
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1981861037}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 12.613049, y: 1, z: 20}
+  m_Center: {x: -1.1934785, y: 0, z: 0}
 --- !u!1 &2117338196
 GameObject:
   m_ObjectHideFlags: 0

@@ -520,6 +520,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 737cde331d60a5f43b2c704635a807da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exitName: Main
+  exitCoord: {x: 6, y: 1, z: 10}
 --- !u!65 &686019453
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -531,7 +533,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 10, y: 2.220446e-16, z: 10}
+  m_Size: {x: 10, y: 10, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!64 &686019454
 MeshCollider:
@@ -682,6 +684,25 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -5495902117074765545, guid: 4c64ca0e88792d44c82eab22b911aa97, type: 3}
+--- !u!1 &1063452941 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 1aba8ee66d4a19f4eb25f6c9206a1fd0, type: 3}
+  m_PrefabInstance: {fileID: 1314454457}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &1063452942
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1063452941}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -5495902117074765545, guid: 1aba8ee66d4a19f4eb25f6c9206a1fd0, type: 3}
 --- !u!1 &1170162847
 GameObject:
   m_ObjectHideFlags: 0
@@ -1290,6 +1311,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 737cde331d60a5f43b2c704635a807da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exitName: House1Top
+  exitCoord: {x: 2, y: 1, z: -8}
 --- !u!65 &1806905911
 BoxCollider:
   m_ObjectHideFlags: 0
