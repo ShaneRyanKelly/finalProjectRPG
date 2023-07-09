@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
     }
 
-    void OnCollisionEnter(Collision collision){
+    /*void OnCollisionEnter(Collision collision){
         
         if (collision.gameObject.tag == "Ground"){
             grounded = true;
@@ -45,7 +45,7 @@ public class Player : MonoBehaviour
             grounded = false;
         }
     }
-/*
+
     void OnCollisionStay(Collision collision){
         if (collision.gameObject.tag == "Ground"){
             grounded = true;
@@ -67,10 +67,10 @@ public class Player : MonoBehaviour
     
         //project forward and right vectors on the horizontal plane (y = 0)
         
-        if (grounded){
-            forward.y = 0f;
-            right.y = 0f;
-        }
+        
+        forward.y = 0f;
+        right.y = 0f;
+        
         
         forward.Normalize();
         right.Normalize();
