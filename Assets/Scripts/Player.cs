@@ -33,16 +33,24 @@ public class Player : MonoBehaviour
     }
 
     void OnCollisionEnter(Collision collision){
+        
         if (collision.gameObject.tag == "Ground"){
             grounded = true;
         }
     }
 
     void OnCollisionExit(Collision collision){
+        Debug.Log("collision exit");
         if (collision.gameObject.tag == "Ground"){
             grounded = false;
         }
     }
+/*
+    void OnCollisionStay(Collision collision){
+        if (collision.gameObject.tag == "Ground"){
+            grounded = true;
+        }
+    }*/
 
     // Update is called once per frame
     void FixedUpdate()
@@ -58,6 +66,7 @@ public class Player : MonoBehaviour
         var right = camera.transform.right;
     
         //project forward and right vectors on the horizontal plane (y = 0)
+        
         if (grounded){
             forward.y = 0f;
             right.y = 0f;
@@ -73,5 +82,6 @@ public class Player : MonoBehaviour
 
         //_rb.MovePosition(transform.position + moveDir * Time.deltaTime);
         _rb.velocity = moveDir * Time.deltaTime;
+        Debug.Log(_rb.velocity);
     }
 }

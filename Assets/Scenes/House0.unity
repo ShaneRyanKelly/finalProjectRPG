@@ -374,6 +374,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1207411906564728973, guid: 5b615c666e70e4446b16628e9ec2671c, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374429177012583262, guid: 5b615c666e70e4446b16628e9ec2671c, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 4813720274952327347, guid: 5b615c666e70e4446b16628e9ec2671c, type: 3}
       propertyPath: m_Name
       value: House0Top
