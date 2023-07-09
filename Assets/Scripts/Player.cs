@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         PlayerPrefs.SetString("playerName", "Shane");
+        PlayerPrefs.SetString("friendName", "Jinglu");
         if (PlayerPrefs.HasKey("exitName")){
             this.transform.position = new Vector3(PlayerPrefs.GetFloat("x"), PlayerPrefs.GetFloat("y"), PlayerPrefs.GetFloat("z"));
             ClearLevelPrefs();
