@@ -6,10 +6,10 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Main.unity
+    path: Assets/Scenes/Main/Main.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/Scenes/House0.unity
+    path: Assets/Scenes/House0/House0.unity
     guid: 10e8436c8b5e1b145a5ef684399f49ec
   - enabled: 1
     path: Assets/Scenes/House1.unity
@@ -21,7 +21,7 @@ EditorBuildSettings:
     path: Assets/Scenes/House1Top.unity
     guid: a3cf8f65d8f2e8a4aba23b6e93418e3e
   - enabled: 1
-    path: Assets/Scenes/House0Top.unity
+    path: Assets/Scenes/House0/House0Top.unity
     guid: 85e2b136798dd364ea7eed5bcbfc9428
   - enabled: 1
     path: Assets/Scenes/House1_1.unity
@@ -30,6 +30,9 @@ EditorBuildSettings:
     path: Assets/Scenes/House1Top_1.unity
     guid: d37086869d14e76428bfca7ea92c8c74
   - enabled: 1
-    path: Assets/Scenes/Main_1.unity
+    path: Assets/Scenes/Main/Main_1.unity
     guid: 21596a2f6eb15a0478cd49616ae5fa3f
+  - enabled: 1
+    path: Assets/Scenes/House1_2.unity
+    guid: 36b79a3e5184d99429265a1b8f6792e3
   m_configObjects: {}

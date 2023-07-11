@@ -82,6 +82,5 @@ public class Player : MonoBehaviour
 
         //_rb.MovePosition(transform.position + moveDir * Time.deltaTime);
         _rb.velocity = moveDir * Time.deltaTime;
-        Debug.Log(_rb.velocity);
     }
 }

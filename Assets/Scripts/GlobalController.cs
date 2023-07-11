@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class GlobalController : MonoBehaviour
 {
-    public MainScript main;
-    public House0_0 House0;
+    public List<GameObject> scenes;
+    int House0State = 0;
     bool newScene = true;
     // Start is called before the first frame update
     void Awake(){
@@ -20,9 +20,14 @@ public class GlobalController : MonoBehaviour
     void Update()
     {
         if (newScene){
-            sceneControllers.Add(GameObject.Find("SceneController").GetComponent<MainScript>());
-            Debug.Log(sceneControllers[0].NPCs[0].script[0]);
+            //sceneControllers.Add(GameObject.Find("SceneController").GetComponent<MainScript>());
+            //Debug.Log(sceneControllers[0].NPCs[0].script[0]);
+            
             newScene = false;
         }
+    }
+
+    public string ReturnString(){
+        return "Hello World";
     }
 }

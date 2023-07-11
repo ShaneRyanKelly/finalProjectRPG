@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5027251004650159490}
   - component: {fileID: 7445052485845655794}
+  - component: {fileID: 6766871492205078363}
   m_Layer: 0
   m_Name: House1Top
   m_TagString: Untagged
@@ -25,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4813720274952327347}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.007, y: 0.0064, z: -0.062}
+  m_LocalPosition: {x: 0.0086, y: -0.00682, z: -0.137}
   m_LocalScale: {x: 0.005, y: 0.06666665, z: 0.0039999993}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -45,6 +46,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4, y: 3, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6766871492205078363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4813720274952327347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 737cde331d60a5f43b2c704635a807da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  exitName: 
+  exitCoord: {x: 0, y: 0, z: 0}
 --- !u!1 &5034576129602218059
 GameObject:
   m_ObjectHideFlags: 0
@@ -58,7 +73,7 @@ GameObject:
   - component: {fileID: 6836064153601722782}
   - component: {fileID: 5268931744674797723}
   m_Layer: 0
-  m_Name: Stairs
+  m_Name: StairsDown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -73,7 +88,7 @@ Transform:
   m_GameObject: {fileID: 5034576129602218059}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 4.5, y: 7.1980224, z: -9.57}
-  m_LocalScale: {x: 200, y: 250, z: 15}
+  m_LocalScale: {x: 215, y: 250, z: 15}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5027251004650159490}
@@ -322,7 +337,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 4c64ca0e88792d44c82eab22b911aa97, type: 3}
   m_PrefabInstance: {fileID: 8443357511928758974}
   m_PrefabAsset: {fileID: 0}
---- !u!64 &6984179882117197119
+--- !u!64 &2819415361502447341
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
