@@ -937,6 +937,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2662654320915729256, guid: e1df348459409fd4696fba5437924e47, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4813720274952327347, guid: e1df348459409fd4696fba5437924e47, type: 3}
       propertyPath: m_Name
       value: House0
@@ -959,7 +963,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5662635500522550001, guid: e1df348459409fd4696fba5437924e47, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.35
+      value: -6.46
       objectReference: {fileID: 0}
     - target: {fileID: 5662635500522550001, guid: e1df348459409fd4696fba5437924e47, type: 3}
       propertyPath: m_LocalRotation.w
