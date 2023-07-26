@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     Rigidbody _rb;
     public GameObject platform;
     bool grounded = true;
+    private Animator animator;
 
     void ClearLevelPrefs(){
         PlayerPrefs.DeleteKey("exitName");
@@ -30,6 +31,8 @@ public class Player : MonoBehaviour
             ClearLevelPrefs();
         }
         _rb = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
+        //animator.SetTrigger("WalkForward");
     }
 
     /*void OnCollisionEnter(Collision collision){
@@ -52,11 +55,47 @@ public class Player : MonoBehaviour
         }
     }*/
 
+    private void AnimateWalk(Vector3 direction){
+        Debug.Log(direction.z);
+        if (direction.x < -1){
+            Debug.Log("walkforward");
+            animator.ResetTrigger("Stop");
+            animator.SetTrigger("WalkForward");
+        }
+        else if (direction.x > 1){
+            Debug.Log("walkback");
+            animator.ResetTrigger("Stop");
+            animator.SetTrigger("WalkBack");
+        }
+        else if (direction.z > 1){
+            Debug.Log("WalkLeft");
+            animator.ResetTrigger("Stop");
+            animator.SetTrigger("WalkLeft");
+        }
+        else if (direction.z < -1){
+            Debug.Log("WalkRight");
+            animator.ResetTrigger("Stop");
+            animator.SetTrigger("WalkRight");
+        }
+        else {
+            Debug.Log("stop");
+            animator.ResetTrigger("WalkForward");
+            animator.ResetTrigger("WalkLeft");
+            animator.SetTrigger("Stop");
+        }
+    }
+
     // Update is called once per frame
+    void Update(){
+        
+    }
+
     void FixedUpdate()
     {
         xVector = Input.GetAxis("Horizontal");
         yVector = Input.GetAxis("Vertical");
+
+        
 
         //assuming we only using the single camera:
         var camera = UnityEngine.Camera.main;
@@ -76,11 +115,14 @@ public class Player : MonoBehaviour
         right.Normalize();
 
         var moveDir = ( yVector * forward + xVector * right ) * moveSpeed;
+        
 
         //this.transform.Translate(Vector3.forward * yVector * Time.deltaTime);
         //this.transform.Translate(Vector3.right * xVector * Time.deltaTime);
 
         //_rb.MovePosition(transform.position + moveDir * Time.deltaTime);
         _rb.velocity = moveDir * Time.deltaTime;
+        AnimateWalk(moveDir);
+        
     }
 }

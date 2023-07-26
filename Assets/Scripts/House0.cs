@@ -9,8 +9,8 @@ public class House0 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        globalController = GameObject.Find("GlobalScript").GetComponent<GlobalController>();
-        Debug.Log(globalController.ReturnString());
+        //globalController = GameObject.Find("GlobalScript").GetComponent<GlobalController>();
+        //Debug.Log(globalController.ReturnString());
         Debug.Log("House0");
         AssignDialogues();
     }
