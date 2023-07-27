@@ -57,27 +57,27 @@ public class Player : MonoBehaviour
     }*/
 
     private void AnimateWalk(Vector3 direction){
-        Debug.Log(direction.z);
+        Debug.Log(direction);
         animator.speed = 0.5f;
-        if (direction.x < -0.05f){
+        if (direction.x < -250f){
             Debug.Log("walkforward");
             animator.ResetTrigger("Stop");
             animator.SetTrigger("WalkForward");
             currentAnimation = "RenForward";
         }
-        else if (direction.x > 0.05f){
+        else if (direction.x > 250f){
             Debug.Log("walkback");
             animator.ResetTrigger("Stop");
             animator.SetTrigger("WalkBack");
             currentAnimation = "RenBack";
         }
-        else if (direction.z > 0.05f){
+        else if (direction.z > 250f){
             Debug.Log("WalkLeft");
             animator.ResetTrigger("Stop");
             animator.SetTrigger("WalkLeft");
             currentAnimation = "RenLeft";
         }
-        else if (direction.z < -0.05f){
+        else if (direction.z < -250f){
             Debug.Log("WalkRight");
             animator.ResetTrigger("Stop");
             animator.SetTrigger("WalkRight");
