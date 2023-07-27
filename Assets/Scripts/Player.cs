@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     public GameObject platform;
     bool grounded = true;
     private Animator animator;
+    private string currentAnimation;
 
     void ClearLevelPrefs(){
         PlayerPrefs.DeleteKey("exitName");
@@ -57,31 +58,38 @@ public class Player : MonoBehaviour
 
     private void AnimateWalk(Vector3 direction){
         Debug.Log(direction.z);
-        if (direction.x < -1){
+        animator.speed = 0.5f;
+        if (direction.x < -0.05f){
             Debug.Log("walkforward");
             animator.ResetTrigger("Stop");
             animator.SetTrigger("WalkForward");
+            currentAnimation = "RenForward";
         }
-        else if (direction.x > 1){
+        else if (direction.x > 0.05f){
             Debug.Log("walkback");
             animator.ResetTrigger("Stop");
             animator.SetTrigger("WalkBack");
+            currentAnimation = "RenBack";
         }
-        else if (direction.z > 1){
+        else if (direction.z > 0.05f){
             Debug.Log("WalkLeft");
             animator.ResetTrigger("Stop");
             animator.SetTrigger("WalkLeft");
+            currentAnimation = "RenLeft";
         }
-        else if (direction.z < -1){
+        else if (direction.z < -0.05f){
             Debug.Log("WalkRight");
             animator.ResetTrigger("Stop");
             animator.SetTrigger("WalkRight");
+            currentAnimation = "RenRight";
         }
         else {
             Debug.Log("stop");
             animator.ResetTrigger("WalkForward");
             animator.ResetTrigger("WalkLeft");
-            animator.SetTrigger("Stop");
+            animator.ResetTrigger("WalkRight");
+            animator.ResetTrigger("WalkBack");
+            animator.Play(currentAnimation, 0, 1/3.0f);
         }
     }
 
