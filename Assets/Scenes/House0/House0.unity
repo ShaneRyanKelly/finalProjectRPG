@@ -406,6 +406,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: House0Top
       objectReference: {fileID: 0}
+    - target: {fileID: 5268931744674797723, guid: 5b615c666e70e4446b16628e9ec2671c, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -2228417370725966487, guid: 4c64ca0e88792d44c82eab22b911aa97, type: 3}
+    - target: {fileID: 5268931744674797723, guid: 5b615c666e70e4446b16628e9ec2671c, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5662635500522550001, guid: 5b615c666e70e4446b16628e9ec2671c, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -450,7 +458,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5268931744674797723, guid: 5b615c666e70e4446b16628e9ec2671c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5b615c666e70e4446b16628e9ec2671c, type: 3}
 --- !u!1 &357454063 stripped
 GameObject:

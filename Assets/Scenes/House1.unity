@@ -1850,4 +1850,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   exitName: House1Top
-  exitCoord: {x: 4, y: 1, z: -8}
+  exitCoord: {x: 3, y: 1, z: -8}
