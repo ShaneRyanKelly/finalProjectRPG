@@ -59,11 +59,17 @@ public class Player : MonoBehaviour
     private void AnimateWalk(Vector3 direction){
         Debug.Log(direction);
         animator.speed = 0.5f;
-        if (direction.x < -250f){
+        if (direction.x < -250f && Mathf.Round(direction.z) == 0){
             Debug.Log("walkforward");
             animator.ResetTrigger("Stop");
             animator.SetTrigger("WalkForward");
             currentAnimation = "RenForward";
+        }
+        else if (direction.x < -250f && direction.z > 250){
+            Debug.Log("tiltleftforward");
+            animator.ResetTrigger("Stop");
+            animator.SetTrigger("FrontTiltLeft");
+            currentAnimation = "RenFrontTiltLeft";
         }
         else if (direction.x > 250f){
             Debug.Log("walkback");
