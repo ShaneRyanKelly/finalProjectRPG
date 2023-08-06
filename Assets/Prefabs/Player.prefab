@@ -83,6 +83,7 @@ MonoBehaviour:
   xVector: 0
   yVector: 0
   platform: {fileID: 0}
+  vectorTolerance: 0.25
 --- !u!212 &5346386566282825898
 SpriteRenderer:
   m_ObjectHideFlags: 0
