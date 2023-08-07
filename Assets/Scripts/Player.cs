@@ -137,6 +137,16 @@ public class Player : MonoBehaviour
                 animator.SetTrigger("FrontTiltRight");
                 currentAnimation = "RenFrontTiltRight";
             }
+            else if (!NoVector(xVector) && !NoVector(yVector) && !isNegative(xVector) && !isNegative(yVector)){
+                Debug.Log("tiltrightback");
+                animator.SetTrigger("BackTiltRight");
+                currentAnimation = "RenBackTiltRight";
+            }
+            else if (!NoVector(xVector) && !NoVector(yVector) && isNegative(xVector) && !isNegative(yVector)){
+                Debug.Log("tiltleftback");
+                animator.SetTrigger("BackTiltLeft");
+                currentAnimation = "RenBackTiltLeft";
+            }
             else if (NoVector(xVector) && isNegative(yVector)){
                 Debug.Log("walkforward");
                 animator.ResetTrigger("Stop");
