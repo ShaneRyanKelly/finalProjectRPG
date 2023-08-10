@@ -127,13 +127,11 @@ public class Player : MonoBehaviour
         if (!Idle(xVector, yVector)){
             if (isNegative(yVector) && isNegative(xVector)){
                 Debug.Log("tiltleftforward");
-                animator.ResetTrigger("Stop");
                 animator.SetTrigger("FrontTiltLeft");
                 currentAnimation = "RenFrontTiltLeft";
             }
             else if (!NoVector(xVector) && !isNegative(xVector) && isNegative(yVector)){
                 Debug.Log("tiltrightforward");
-                animator.ResetTrigger("Stop");
                 animator.SetTrigger("FrontTiltRight");
                 currentAnimation = "RenFrontTiltRight";
             }
@@ -149,25 +147,21 @@ public class Player : MonoBehaviour
             }
             else if (NoVector(xVector) && isNegative(yVector)){
                 Debug.Log("walkforward");
-                animator.ResetTrigger("Stop");
                 animator.SetTrigger("WalkForward");
                 currentAnimation = "RenForward";
             }
             else if (NoVector(xVector) && !isNegative(yVector)){
                 Debug.Log("walkback");
-                animator.ResetTrigger("Stop");
                 animator.SetTrigger("WalkBack");
                 currentAnimation = "RenBack";
             }
             else if (NoVector(yVector) && isNegative(xVector)){
                 Debug.Log("WalkLeft");
-                animator.ResetTrigger("Stop");
                 animator.SetTrigger("WalkLeft");
                 currentAnimation = "RenLeft";
             }
             else if (NoVector(yVector) && !isNegative(xVector)){
                 Debug.Log("WalkRight");
-                animator.ResetTrigger("Stop");
                 animator.SetTrigger("WalkRight");
                 currentAnimation = "RenRight";
             }
@@ -219,7 +213,7 @@ public class Player : MonoBehaviour
         //this.transform.Translate(Vector3.right * xVector * Time.deltaTime);
 
         //_rb.MovePosition(transform.position + moveDir * Time.deltaTime);
-        _rb.velocity = moveDir * Time.deltaTime;
+        _rb.velocity = Vector3.ClampMagnitude(moveDir * Time.deltaTime, 10.0f);
         Debug.Log(_rb.velocity);
         //AnimateWalk(moveDir);
         AnimateWalk(xVector, yVector);
