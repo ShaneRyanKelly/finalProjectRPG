@@ -5,7 +5,8 @@ using UnityEngine;
 public class MainScript : MonoBehaviour
 {
     public List<NPC> NPCs;
-    public int state = 0;
+    public int startingState = 0;
+    public int currentState = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +22,11 @@ public class MainScript : MonoBehaviour
 
     void AssignDialogues(){
         NPCs[0].givenName = "NPC 0";
-        NPCs[0].script.Add("Hello " + PlayerPrefs.GetString("playerName") + " welcome to the new world");
+        if (currentState == 0){
+            NPCs[0].script.Add("Hello " + PlayerPrefs.GetString("playerName") + " welcome to the new world");
+        }
+        else if (currentState == 1){
+            NPCs[0].script.Add("Hello " + PlayerPrefs.GetString("playerName") + " welcome to the new world");
+        }
     }
 }

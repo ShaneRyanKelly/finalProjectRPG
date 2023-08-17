@@ -7,6 +7,8 @@ public class trigger : MonoBehaviour
 {
     public string exitName;
     public Vector3 exitCoord;
+    private GameObject globalController;
+
     // Start is called before the first frame update
     void Start()
     {

@@ -747,7 +747,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39c596fcd435e5046a6bea03781a9415, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scenes: []
+  scenes:
+  - sceneName: Main
+    buildIndex: 0
+    sceneState: 0
+  - sceneName: House0
+    buildIndex: 1
+    sceneState: 0
 --- !u!4 &1029801715
 Transform:
   m_ObjectHideFlags: 0

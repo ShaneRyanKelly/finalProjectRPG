@@ -61,6 +61,10 @@ public class NPC : MonoBehaviour
         }
     }
 
+    void AssignDialogues(){
+        
+    }
+
     void modifyObjects(){
         for (int i = 0; i < events[eventIndex].fromObjects.Count; i++){
             for (int j = 0; j < events[eventIndex].toObjects.Count; j++){

@@ -5,8 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GlobalController : MonoBehaviour
 {
-    public List<GameObject> scenes;
-    int House0State = 0;
+    public List<SceneData> scenes;
     bool newScene = true;
     // Start is called before the first frame update
     void Awake(){
@@ -25,8 +24,10 @@ public class GlobalController : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log("OnSceneLoaded: " + scene.name);
-        Debug.Log(mode);
+        // cool this works.
+        //Debug.Log("OnSceneLoaded: " + scene.name);
+        //Debug.Log(mode);
+        
     }
 
     public string ReturnString(){
