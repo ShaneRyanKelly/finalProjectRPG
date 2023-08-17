@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GlobalController : MonoBehaviour
 {
@@ -19,12 +20,13 @@ public class GlobalController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (newScene){
-            //sceneControllers.Add(GameObject.Find("SceneController").GetComponent<MainScript>());
-            //Debug.Log(sceneControllers[0].NPCs[0].script[0]);
-            
-            newScene = false;
-        }
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log("OnSceneLoaded: " + scene.name);
+        Debug.Log(mode);
     }
 
     public string ReturnString(){

@@ -79,40 +79,40 @@ public class Player : MonoBehaviour
     }
 
     private void AnimateWalk(Vector3 direction){
-        Debug.Log(direction);
+        //Debug.Log(direction);
         animator.speed = 0.5f;
         if (NoVector(direction.z) && direction.x < -vectorTolerance){
-            Debug.Log("walkforward");
+            //Debug.Log("walkforward");
             animator.ResetTrigger("Stop");
             animator.SetTrigger("WalkForward");
             currentAnimation = "RenForward";
         }
         else if (NoVector(direction.z) && direction.x > vectorTolerance){
-            Debug.Log("walkback");
+            //Debug.Log("walkback");
             animator.ResetTrigger("Stop");
             animator.SetTrigger("WalkBack");
             currentAnimation = "RenBack";
         }
         else if (NoVector(direction.x) && direction.z > vectorTolerance){
-            Debug.Log("WalkLeft");
+            //Debug.Log("WalkLeft");
             animator.ResetTrigger("Stop");
             animator.SetTrigger("WalkLeft");
             currentAnimation = "RenLeft";
         }
         else if (NoVector(direction.x) && direction.z < -vectorTolerance){
-            Debug.Log("WalkRight");
+            //Debug.Log("WalkRight");
             animator.ResetTrigger("Stop");
             animator.SetTrigger("WalkRight");
             currentAnimation = "RenRight";
         }
         else if (direction.x < vectorTolerance && direction.z > vectorTolerance){
-            Debug.Log("tiltleftforward");
+            //Debug.Log("tiltleftforward");
             animator.ResetTrigger("Stop");
             animator.SetTrigger("FrontTiltLeft");
             currentAnimation = "RenFrontTiltLeft";
         }
         else {
-            Debug.Log("stop");
+            //Debug.Log("stop");
             animator.ResetTrigger("WalkForward");
             animator.ResetTrigger("WalkLeft");
             animator.ResetTrigger("WalkRight");
@@ -122,52 +122,52 @@ public class Player : MonoBehaviour
     }
 
     private void AnimateWalk(float xVector, float yVector){
-        Debug.Log(xVector + ", " + yVector);
+        //Debug.Log(xVector + ", " + yVector);
         animator.speed = 0.5f;
         if (!Idle(xVector, yVector)){
             if (isNegative(yVector) && isNegative(xVector)){
-                Debug.Log("tiltleftforward");
+                //Debug.Log("tiltleftforward");
                 animator.SetTrigger("FrontTiltLeft");
                 currentAnimation = "RenFrontTiltLeft";
             }
             else if (!NoVector(xVector) && !isNegative(xVector) && isNegative(yVector)){
-                Debug.Log("tiltrightforward");
+                //Debug.Log("tiltrightforward");
                 animator.SetTrigger("FrontTiltRight");
                 currentAnimation = "RenFrontTiltRight";
             }
             else if (!NoVector(xVector) && !NoVector(yVector) && !isNegative(xVector) && !isNegative(yVector)){
-                Debug.Log("tiltrightback");
+                //Debug.Log("tiltrightback");
                 animator.SetTrigger("BackTiltRight");
                 currentAnimation = "RenBackTiltRight";
             }
             else if (!NoVector(xVector) && !NoVector(yVector) && isNegative(xVector) && !isNegative(yVector)){
-                Debug.Log("tiltleftback");
+                //Debug.Log("tiltleftback");
                 animator.SetTrigger("BackTiltLeft");
                 currentAnimation = "RenBackTiltLeft";
             }
             else if (NoVector(xVector) && isNegative(yVector)){
-                Debug.Log("walkforward");
+                //Debug.Log("walkforward");
                 animator.SetTrigger("WalkForward");
                 currentAnimation = "RenForward";
             }
             else if (NoVector(xVector) && !isNegative(yVector)){
-                Debug.Log("walkback");
+                //Debug.Log("walkback");
                 animator.SetTrigger("WalkBack");
                 currentAnimation = "RenBack";
             }
             else if (NoVector(yVector) && isNegative(xVector)){
-                Debug.Log("WalkLeft");
+                //Debug.Log("WalkLeft");
                 animator.SetTrigger("WalkLeft");
                 currentAnimation = "RenLeft";
             }
             else if (NoVector(yVector) && !isNegative(xVector)){
-                Debug.Log("WalkRight");
+                //Debug.Log("WalkRight");
                 animator.SetTrigger("WalkRight");
                 currentAnimation = "RenRight";
             }
         }
         else {
-            Debug.Log("stop");
+            //Debug.Log("stop");
             animator.ResetTrigger("WalkForward");
             animator.ResetTrigger("WalkLeft");
             animator.ResetTrigger("WalkRight");
@@ -214,7 +214,7 @@ public class Player : MonoBehaviour
 
         //_rb.MovePosition(transform.position + moveDir * Time.deltaTime);
         _rb.velocity = Vector3.ClampMagnitude(moveDir * Time.deltaTime, 10.0f);
-        Debug.Log(_rb.velocity);
+        //Debug.Log(_rb.velocity);
         //AnimateWalk(moveDir);
         AnimateWalk(xVector, yVector);
         

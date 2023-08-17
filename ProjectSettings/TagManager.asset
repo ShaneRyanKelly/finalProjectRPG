@@ -8,6 +8,8 @@ TagManager:
   - Wall
   - Ground
   - Stairs
+  - SceneController
+  - GlobalController
   layers:
   - Default
   - TransparentFX
