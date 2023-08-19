@@ -8,7 +8,7 @@ public class GlobalController : MonoBehaviour
     // global controller should pull scene data from json file on back end
     // json file should contain all scene data including game objects, character dialogues
     // global controller should parse dialogues
-    private SceneData scenes;
+    public SceneList scenes;
     bool newScene = true;
     public TextAsset scenesJson;
     // Start is called before the first frame update
@@ -17,8 +17,9 @@ public class GlobalController : MonoBehaviour
     }
     void Start()
     {
-        scenes = JsonUtility.FromJson<SceneData>(scenesJson.text);
-        Debug.Log(scenes.sceneName);
+        scenes = JsonUtility.FromJson<SceneList>(scenesJson.text);
+        Debug.Log(scenes.sceneArray[0].sceneName);
+        // perhaps try serializing a scenelist and see what it looks like?
     }
 
     // Update is called once per frame
