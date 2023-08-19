@@ -154,7 +154,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NPCs:
   - {fileID: 1346884982}
-  state: 0
+  startingState: 0
+  currentState: 0
 --- !u!4 &185025646
 Transform:
   m_ObjectHideFlags: 0
@@ -747,13 +748,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39c596fcd435e5046a6bea03781a9415, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scenes:
-  - sceneName: Main
-    buildIndex: 0
-    sceneState: 0
-  - sceneName: House0
-    buildIndex: 1
-    sceneState: 0
+  scenesJson: {fileID: 4900000, guid: aad302152c0aa3c4e83bed0111b9a467, type: 3}
 --- !u!4 &1029801715
 Transform:
   m_ObjectHideFlags: 0

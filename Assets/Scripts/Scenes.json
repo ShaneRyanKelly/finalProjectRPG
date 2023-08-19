@@ -1,7 +1,5 @@
 {
-    "0":{
-        "sceneName": "Main",
-        "buildIndex": 0,
-        "sceneState": 0
-    }
+    "sceneName": "Main",
+    "buildIndex": 0,
+    "sceneState": 0
 }
