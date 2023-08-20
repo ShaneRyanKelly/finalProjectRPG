@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class SceneList
+public class DialogueList
 {
-    public List<SceneData> scenes;
+    public List<Dialogue> dialogues;
 }

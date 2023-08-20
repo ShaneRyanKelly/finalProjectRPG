@@ -8,4 +8,5 @@ public class SceneData
     public string sceneName;
     public int buildIndex;
     public int sceneState;
+    public List<NPCData> NPCs;
 }

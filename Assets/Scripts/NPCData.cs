@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class SceneList
+public class NPCData
 {
-    public List<SceneData> scenes;
+    public string name;
+    public int index;
 }

@@ -8,6 +8,7 @@ using TMPro;
 public class NPC : MonoBehaviour
 {
     bool inRange = false;
+    public int NPCIndex;
     public string givenName;
     public List<string> script = new List<string>();
     public List<Event> events = new List<Event>();

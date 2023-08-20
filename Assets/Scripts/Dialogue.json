@@ -1,0 +1,12 @@
+{
+    "dialogues": [
+        {
+            "name": "NPC0",
+            "dialogues": [
+                {
+                    "0": "Hello {{playerName}}, Welcome to the world!"
+                }
+            ]
+        }
+    ]
+}

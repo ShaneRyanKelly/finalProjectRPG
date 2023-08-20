@@ -3,11 +3,17 @@
         {
             "sceneName": "Main",
             "buildIndex": 0,
-            "sceneState": 0
+            "sceneState": 0,
+            "NPCs": [
+                {
+                    "name": "NPC0",
+                    "index": 0
+                }
+            ]
         },
         {
-            "sceneName": "Main2",
-            "buildIndex": 0,
+            "sceneName": "House0",
+            "buildIndex": 1,
             "sceneState": 0
         }
     ]
