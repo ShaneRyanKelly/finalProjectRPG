@@ -47,7 +47,7 @@ public class GlobalController : MonoBehaviour
         {
             //find the npc and assign dialogues.
             NPC currentNPC = GameObject.Find(scenes.scenes[0].NPCs[i].name).GetComponent<NPC>();
-            Debug.Log(currentNPC.name);
+            Debug.Log(dialogues.dialogues[0].states[0].lines[0]);
             //This is a total unmitigated disaster, fix it oh my god please.
             /*for (int j = 0; j < dialogues.dialogues[currentNPC.NPCIndex].dialogues[currentState].lines.Count; j++){
                 Debug.Log(dialogues.dialogues[currentNPC.NPCIndex].dialogues[currentState]);

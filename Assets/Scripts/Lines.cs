@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class Dialogue
+public class Lines
 {
-    public string name;
-    public List<Lines> states;
+    public List<string> lines;
 }

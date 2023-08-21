@@ -2,11 +2,9 @@
     "dialogues": [
         {
             "name": "NPC0",
-            "dialogues": [
-                {
-                    "0": "Hello {{playerName}}, Welcome to the world!"
-                }
-            ]
+            "states": [
+                    {"lines": ["Hello {{playerName}}, Welcome to the world!"]}
+                ]
         }
     ]
 }
