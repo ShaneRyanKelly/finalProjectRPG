@@ -1219,6 +1219,10 @@ PrefabInstance:
       value: NPC0
       objectReference: {fileID: 0}
     - target: {fileID: 9075216275342404555, guid: f3c9c48c52d993142b7125d3ab4cc864, type: 3}
+      propertyPath: givenName
+      value: NPC0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9075216275342404555, guid: f3c9c48c52d993142b7125d3ab4cc864, type: 3}
       propertyPath: events.Array.size
       value: 0
       objectReference: {fileID: 0}

@@ -14,7 +14,13 @@
         {
             "sceneName": "House0",
             "buildIndex": 1,
-            "sceneState": 0
+            "sceneState": 0,
+            "NPCs": [
+                {
+                    "name": "Mom",
+                    "index": 1
+                }
+            ]
         }
     ]
 }

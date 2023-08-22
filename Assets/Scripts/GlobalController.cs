@@ -10,7 +10,6 @@ public class GlobalController : MonoBehaviour
     // global controller should parse dialogues
     public SceneList scenes;
     public DialogueList dialogues;
-    bool newScene = true;
     public TextAsset scenesJson;
     public TextAsset dialoguesJson;
     private Scene currentScene;
@@ -25,34 +24,35 @@ public class GlobalController : MonoBehaviour
         dialogues = JsonUtility.FromJson<DialogueList>(dialoguesJson.text);
         currentScene = SceneManager.GetActiveScene();
         currentState = scenes.scenes[currentScene.buildIndex].sceneState;
+        SceneManager.sceneLoaded += OnSceneLoaded;
         AssignDialogues();
     }
 
     // Update is called once per frame
     void Update()
     {
-        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // cool this works.
-        //Debug.Log("OnSceneLoaded: " + scene.name);
-        //Debug.Log(mode);
-
+        currentScene = SceneManager.GetActiveScene();
+        currentState = scenes.scenes[currentScene.buildIndex].sceneState;
+        Debug.Log("scene load: " + currentScene.buildIndex);
+        AssignDialogues();
     }
 
     public void AssignDialogues(){
-        for (int i = 0; i < scenes.scenes[0].NPCs.Count; i++)
+        Debug.Log(currentScene.buildIndex);
+        for (int i = 0; i < scenes.scenes[currentScene.buildIndex].NPCs.Count; i++)
         {
             //find the npc and assign dialogues.
-            NPC currentNPC = GameObject.Find(scenes.scenes[0].NPCs[i].name).GetComponent<NPC>();
+            NPC currentNPC = GameObject.Find(scenes.scenes[currentScene.buildIndex].NPCs[i].name).GetComponent<NPC>();
             //Debug.Log(dialogues.dialogues[0].states[0].lines[0]);
             for (int j = 0; j < dialogues.dialogues[currentNPC.NPCIndex].states[currentState].lines.Count; j++){
                 string currentLine = dialogues.dialogues[currentNPC.NPCIndex].states[currentState].lines[j];
-                Debug.Log(currentLine);
+                //Debug.Log(currentLine);
                 string parsedLine = parseDialogue(currentLine);
-                Debug.Log(parsedLine);
+                //Debug.Log(parsedLine);
                 currentNPC.script.Add(parsedLine);
             }
         }
@@ -65,7 +65,7 @@ public class GlobalController : MonoBehaviour
         int varStart = 0;
         int varEnd = 0;
         char[] stringArray = rawString.ToCharArray();
-        Debug.Log(rawString);
+        //Debug.Log(rawString);
         for (int i = 0; i < rawString.Length; i++){
             if (stringArray[i] == '{'){
                 varStart = i;
@@ -74,19 +74,19 @@ public class GlobalController : MonoBehaviour
             }
             else if (stringArray[i] == '}'){
                 varEnd = i+1;
-                Debug.Log(rawString.Substring(varStart, varEnd-varStart));
+                //Debug.Log(rawString.Substring(varStart, varEnd-varStart));
                 rawString = rawString.Replace(rawString.Substring(varStart, varEnd-varStart), PlayerPrefs.GetString(currentVar));
                 currentVar = "";
                 varStart = 0;
                 varEnd = 0;
-                Debug.Log("var end");
+                //Debug.Log("var end");
                 parsingVar = false;
             }
             else if (parsingVar){
                 currentVar += stringArray[i];
             }
         }
-        Debug.Log(rawString);
+        //Debug.Log(rawString);
         return rawString;
     }
 

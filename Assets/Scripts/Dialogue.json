@@ -5,6 +5,15 @@
             "states": [
                     {"lines": ["Hello {playerName}, Welcome to the world!"]}
                 ]
+        },
+        {
+            "name": "Mom",
+            "states": [
+                    {"lines": [
+                        "Good morning {playerName}! You finally woke up!",
+                        "You should go see {friendName}. Have you seen them recently? Maybe they are at home today."
+                    ]}
+                ]
         }
     ]
 }
