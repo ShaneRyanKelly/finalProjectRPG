@@ -6,4 +6,5 @@ using UnityEngine;
 public class Lines
 {
     public List<string> lines;
+    public bool hasEvent;
 }

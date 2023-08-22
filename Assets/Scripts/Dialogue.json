@@ -3,16 +3,26 @@
         {
             "name": "NPC0",
             "states": [
-                    {"lines": ["Hello {playerName}, Welcome to the world!"]}
+                    {
+                        "lines": ["Hello {playerName}, Welcome to the world!"],
+                        "hasEvent": true
+                    },
+                    {
+                        "lines": ["Hello {playerName}, Hope you are enjoying the world!"],
+                        "hasEvent": false
+                    }
                 ]
         },
         {
             "name": "Mom",
             "states": [
-                    {"lines": [
+                    {
+                        "lines": [
                         "Good morning {playerName}! You finally woke up!",
                         "You should go see {friendName}. Have you seen them recently? Maybe they are at home today."
-                    ]}
+                        ],
+                        "hasEvent": false
+                    }
                 ]
         }
     ]

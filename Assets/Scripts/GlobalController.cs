@@ -8,12 +8,12 @@ public class GlobalController : MonoBehaviour
     // global controller should pull scene data from json file on back end
     // json file should contain all scene data including game objects, character dialogues
     // global controller should parse dialogues
-    public SceneList scenes;
-    public DialogueList dialogues;
+    public static SceneList scenes;
+    public static DialogueList dialogues;
     public TextAsset scenesJson;
     public TextAsset dialoguesJson;
-    private Scene currentScene;
-    private int currentState;
+    public static Scene currentScene;
+    public static int currentState;
     // Start is called before the first frame update
     void Awake(){
         DontDestroyOnLoad(this.gameObject);
@@ -31,6 +31,7 @@ public class GlobalController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -41,24 +42,45 @@ public class GlobalController : MonoBehaviour
         AssignDialogues();
     }
 
-    public void AssignDialogues(){
+    public static void AssignDialogues(){
         Debug.Log(currentScene.buildIndex);
         for (int i = 0; i < scenes.scenes[currentScene.buildIndex].NPCs.Count; i++)
         {
             //find the npc and assign dialogues.
             NPC currentNPC = GameObject.Find(scenes.scenes[currentScene.buildIndex].NPCs[i].name).GetComponent<NPC>();
             //Debug.Log(dialogues.dialogues[0].states[0].lines[0]);
-            for (int j = 0; j < dialogues.dialogues[currentNPC.NPCIndex].states[currentState].lines.Count; j++){
-                string currentLine = dialogues.dialogues[currentNPC.NPCIndex].states[currentState].lines[j];
+            int queryState = GetNPCState(currentNPC.NPCIndex);
+            
+            Debug.Log(queryState);
+            currentNPC.script.Clear();
+            for (int j = 0; j < dialogues.dialogues[currentNPC.NPCIndex].states[queryState].lines.Count; j++){
+                string currentLine = dialogues.dialogues[currentNPC.NPCIndex].states[queryState].lines[j];
                 //Debug.Log(currentLine);
-                string parsedLine = parseDialogue(currentLine);
+                string parsedLine = ParseDialogue(currentLine);
                 //Debug.Log(parsedLine);
                 currentNPC.script.Add(parsedLine);
             }
         }
     }
 
-    private string parseDialogue(string rawString){
+    public static void CheckEvent(int NPCIndex){
+        // Events now handled by global controller find a way to make npcs move and modify scene gameobjects from here.
+        int queryState = GetNPCState(NPCIndex);
+        if (dialogues.dialogues[NPCIndex].states[queryState].hasEvent){
+            scenes.scenes[GlobalController.currentScene.buildIndex].sceneState++;
+            currentState++;
+            AssignDialogues();
+        }
+    }
+
+    public static int GetNPCState(int NPCIndex){
+        if (currentState > dialogues.dialogues[NPCIndex].states.Count){
+            return dialogues.dialogues[NPCIndex].states.Count - 1;
+        }
+        return currentState;
+    }
+
+    private static string ParseDialogue(string rawString){
         // find embedded var and insert value
         bool parsingVar = false;
         string currentVar = "";

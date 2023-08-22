@@ -43,10 +43,10 @@ public class NPC : MonoBehaviour
         else if (canvasActive && !eventTriggered && Input.GetKeyDown("space")){
             Destroy(currentCanvas);
             canvasActive = false;
-            checkEvent();
+            GlobalController.CheckEvent(NPCIndex);
             dialogueIndex = 0;
         }
-        else if (eventTriggered && modifyIndex < events[eventIndex].fromObjects.Count && events[eventIndex].hasObject){
+        /*else if (eventTriggered && modifyIndex < events[eventIndex].fromObjects.Count && events[eventIndex].hasObject){
             modifyObjects();
         }
         else if (eventTriggered && eventIndex < events.Count && moveIndex < events[eventIndex].moveTo.Count){
@@ -59,7 +59,7 @@ public class NPC : MonoBehaviour
         else if (eventTriggered && moveIndex >= events[eventIndex].moveTo.Count){
             eventTriggered = false;
             Destroy(this.gameObject);
-        }
+        }*/
     }
 
     void modifyObjects(){
@@ -73,9 +73,7 @@ public class NPC : MonoBehaviour
     }
 
     void checkEvent(){
-        if (events.Count > 0){
-            eventTriggered = true;
-        }
+        
     }
 
     Vector3 Round(Vector3 vector3, int decimalPlaces)
