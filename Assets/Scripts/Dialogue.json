@@ -3,7 +3,7 @@
         {
             "name": "NPC0",
             "states": [
-                    {"lines": ["Hello {{playerName}}, Welcome to the world!"]}
+                    {"lines": ["Hello {playerName}, Welcome to the world!"]}
                 ]
         }
     ]
