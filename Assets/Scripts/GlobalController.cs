@@ -63,13 +63,19 @@ public class GlobalController : MonoBehaviour
         }
     }
 
-    public static void CheckEvent(int NPCIndex){
+    public static void CheckEvent(NPC nPC){
         // Events now handled by global controller find a way to make npcs move and modify scene gameobjects from here.
-        int queryState = GetNPCState(NPCIndex);
-        if (dialogues.dialogues[NPCIndex].states[queryState].hasEvent){
+        int queryState = GetNPCState(nPC.NPCIndex);
+        if (dialogues.dialogues[nPC.NPCIndex].states[queryState].hasEvent){
             scenes.scenes[GlobalController.currentScene.buildIndex].sceneState++;
             currentState++;
             AssignDialogues();
+        }
+        //Not sure if this should happen here or in the NPC script, think about it!
+        if (dialogues.dialogues[nPC.NPCIndex].states[queryState].hasMove){
+            List<MoveDirs> moveVectors = dialogues.dialogues[nPC.NPCIndex].states[queryState].moveTo;
+            MoveNPC(nPC, moveVectors);
+            //Debug.Log("NPC Moves: " + moveVector[0] + ", " + moveVector[1] + ", " + moveVector[2]);
         }
     }
 
@@ -78,6 +84,15 @@ public class GlobalController : MonoBehaviour
             return dialogues.dialogues[NPCIndex].states.Count - 1;
         }
         return currentState;
+    }
+
+    //Not sure if this should happen here or in the NPC script, think about it!
+    public static void MoveNPC(NPC nPC, List<MoveDirs> moveVectors){
+        Debug.Log("Moving to" + moveVectors[0].moveVector[0]);
+        for (int i = 0; i < moveVectors.Count; i++){
+            Vector3 translateVector = new Vector3(moveVectors[i].moveVector[0], moveVectors[i].moveVector[1], moveVectors[i].moveVector[2]);
+            nPC.transform.Translate(translateVector * Time.deltaTime * 10.0f);
+        }
     }
 
     private static string ParseDialogue(string rawString){

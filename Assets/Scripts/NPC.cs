@@ -43,7 +43,7 @@ public class NPC : MonoBehaviour
         else if (canvasActive && !eventTriggered && Input.GetKeyDown("space")){
             Destroy(currentCanvas);
             canvasActive = false;
-            GlobalController.CheckEvent(NPCIndex);
+            GlobalController.CheckEvent(this);
             dialogueIndex = 0;
         }
         /*else if (eventTriggered && modifyIndex < events[eventIndex].fromObjects.Count && events[eventIndex].hasObject){

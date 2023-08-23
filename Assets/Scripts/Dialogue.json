@@ -5,11 +5,15 @@
             "states": [
                     {
                         "lines": ["Hello {playerName}, Welcome to the world!"],
-                        "hasEvent": true
+                        "hasEvent": true,
+                        "hasMove": true,
+                        "moveTo": [{"moveVector": [ 5.0, 0.0, 0.0 ]}]
                     },
                     {
                         "lines": ["Hello {playerName}, Hope you are enjoying the world!"],
-                        "hasEvent": false
+                        "hasEvent": false,
+                        "hasMove": false,
+                        "moveTo": []
                     }
                 ]
         },
@@ -21,7 +25,9 @@
                         "Good morning {playerName}! You finally woke up!",
                         "You should go see {friendName}. Have you seen them recently? Maybe they are at home today."
                         ],
-                        "hasEvent": false
+                        "hasEvent": false,
+                        "hasMove": false,
+                        "moveTo": []
                     }
                 ]
         }
