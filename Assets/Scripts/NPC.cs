@@ -18,6 +18,10 @@ public class NPC : MonoBehaviour
     int dialogueIndex = 0;
     int moveSpeed = 1;
     bool eventTriggered = false;
+    bool isMoving = false;
+    List<MoveDirs> moveToVectors;
+    Vector3 moveDestination;
+    Vector3 translateVector;
 
     int eventIndex = 0;
     int moveIndex = 0;
@@ -60,6 +64,24 @@ public class NPC : MonoBehaviour
             eventTriggered = false;
             Destroy(this.gameObject);
         }*/
+        if (isMoving){
+            if (moveIndex < moveToVectors.Count){
+                transform.Translate(translateVector * Time.deltaTime * moveSpeed);
+                if (Round(transform.position, 0) == Round(moveDestination, 0)){
+                    moveIndex++;
+                    if (moveIndex >= moveToVectors.Count){
+                        isMoving = false;
+                        Destroy(this.gameObject);
+                    }
+                    else {
+                        translateVector = new Vector3(moveToVectors[moveIndex].moveVector[0], moveToVectors[moveIndex].moveVector[1], moveToVectors[moveIndex].moveVector[2]);
+                        moveDestination = new Vector3(moveToVectors[moveIndex].destinations[0], moveToVectors[moveIndex].destinations[1], moveToVectors[moveIndex].destinations[2]);
+                    }
+                    
+                }
+            }
+            
+        }
     }
 
     void modifyObjects(){
@@ -97,6 +119,14 @@ public class NPC : MonoBehaviour
         TextMeshProUGUI dialogueText = dialogueTextObject.GetComponent<TextMeshProUGUI>();
         dialogueText.text = script[dialogueIndex];
         dialogueIndex++;
+    }
+
+    public void TriggerMove(List<MoveDirs> moveVectors){
+        isMoving = true;
+        moveToVectors = moveVectors;
+        translateVector = new Vector3(moveToVectors[0].moveVector[0], moveVectors[0].moveVector[1], moveVectors[0].moveVector[2]);
+        moveDestination = new Vector3(moveToVectors[0].destinations[0], moveToVectors[0].destinations[1], moveToVectors[0].destinations[2]);
+        
     }
 
     void OnTriggerEnter(Collider myCollider){

@@ -6,4 +6,5 @@ using UnityEngine;
 public class MoveDirs
 {
     public List<float> moveVector;
+    public List<float> destinations;
 }

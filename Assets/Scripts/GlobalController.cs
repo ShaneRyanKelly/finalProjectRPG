@@ -74,7 +74,7 @@ public class GlobalController : MonoBehaviour
         //Not sure if this should happen here or in the NPC script, think about it!
         if (dialogues.dialogues[nPC.NPCIndex].states[queryState].hasMove){
             List<MoveDirs> moveVectors = dialogues.dialogues[nPC.NPCIndex].states[queryState].moveTo;
-            MoveNPC(nPC, moveVectors);
+            nPC.TriggerMove(moveVectors);
             //Debug.Log("NPC Moves: " + moveVector[0] + ", " + moveVector[1] + ", " + moveVector[2]);
         }
     }
@@ -87,13 +87,13 @@ public class GlobalController : MonoBehaviour
     }
 
     //Not sure if this should happen here or in the NPC script, think about it!
-    public static void MoveNPC(NPC nPC, List<MoveDirs> moveVectors){
+    /*public static void MoveNPC(NPC nPC, List<MoveDirs> moveVectors){
         Debug.Log("Moving to" + moveVectors[0].moveVector[0]);
         for (int i = 0; i < moveVectors.Count; i++){
             Vector3 translateVector = new Vector3(moveVectors[i].moveVector[0], moveVectors[i].moveVector[1], moveVectors[i].moveVector[2]);
             nPC.transform.Translate(translateVector * Time.deltaTime * 10.0f);
         }
-    }
+    }*/
 
     private static string ParseDialogue(string rawString){
         // find embedded var and insert value
