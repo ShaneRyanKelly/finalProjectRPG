@@ -15,6 +15,7 @@ public class GlobalController : MonoBehaviour
     public static Scene currentScene;
     public static int currentState;
     public List<NPC> NPCList;
+    public NPC NPCPrefab;
     public NPC newNPC;
     // Start is called before the first frame update
     void Awake(){
@@ -43,7 +44,8 @@ public class GlobalController : MonoBehaviour
         currentScene = SceneManager.GetActiveScene();
         currentState = scenes.scenes[currentScene.buildIndex].sceneState;
         Debug.Log("scene load: " + currentScene.buildIndex);
-        //AssignDialogues();
+        InstantiateNPCs();
+        AssignDialogues();
     }
 
     public static void AssignDialogues(){
@@ -92,12 +94,13 @@ public class GlobalController : MonoBehaviour
     }
 
     private void InstantiateNPCs(){
+        NPCList.Clear();
         for (int i = 0; i < scenes.scenes[currentScene.buildIndex].NPCs.Count; i++){
             Debug.Log("in loop " + i);
             NPCData newNPCData = scenes.scenes[currentScene.buildIndex].NPCs[i];
             Dialogue newDialogue = dialogues.dialogues[newNPCData.index];
             Vector3 location = new Vector3(newNPCData.location[0], newNPCData.location[1], newNPCData.location[2]);
-            newNPC = Instantiate(newNPC, location, Quaternion.identity);
+            newNPC = Instantiate(NPCPrefab, location, Quaternion.identity);
             newNPC.name = newNPCData.givenName;
             newNPC.createNPC(newNPC, newNPCData, newDialogue);
             Debug.Log("new npc " + newNPC.location);

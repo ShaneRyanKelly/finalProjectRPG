@@ -30,9 +30,16 @@
                     "givenName": "Mom",
                     "index": 0,
                     "dialogueIndex": 1,
-                    "state": 0
+                    "state": 0,
+                    "location": [ 0, 1.5, 5 ]
                 }
             ]
+        },
+        {
+            "sceneName": "House1",
+            "buildIndex": 2,
+            "sceneState": 0,
+            "NPCs": []
         }
     ]
 }
