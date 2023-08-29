@@ -19,7 +19,8 @@
                                 "moveVector": [ 0.0, 0.0, 1.0 ],
                                 "destinations": [ -15, 1.5, 8.0 ]
                             }
-                        ]
+                        ],
+                        "destination": []
                     }
                 ]
         },
@@ -30,6 +31,20 @@
                         "lines": [
                         "Good morning {playerName}! You finally woke up!",
                         "You should go see {friendName}. Have you seen them recently? Maybe they are at home today."
+                        ],
+                        "hasEvent": false,
+                        "hasMove": false,
+                        "moveTo": [],
+                        "destination": []
+                    }
+                ]
+        },
+        {
+            "name": "NPC1",
+            "states": [
+                    {
+                        "lines": [
+                        "You should talk to my brother!"
                         ],
                         "hasEvent": false,
                         "hasMove": false,

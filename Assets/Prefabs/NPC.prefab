@@ -112,9 +112,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99e9089c4a53b424082a21967cb911ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  givenName: 
+  givenName: NPC0
+  NPCIndex: 0
+  NPCState: 0
+  dialogueState: 0
+  dialogueIndex: 0
+  dialogueList:
+    name: NPC0
+    states:
+    - lines:
+      - Hello {playerName}, Welcome to the world!
+      hasEvent: 1
+      hasMove: 0
+      moveTo: []
+    - lines:
+      - Hello {playerName}, Hope you are enjoying the world!
+      hasEvent: 0
+      hasMove: 1
+      moveTo:
+      - moveVector:
+        - 0
+        - 0
+        - 1
+        destinations:
+        - -15
+        - 1.5
+        - 8
   script: []
   events: []
+  location: {x: -15, y: 1.5, z: 7}
   canvas: {fileID: 3788106895109324621, guid: f950978dee94d3f4e92e594de905abec, type: 3}
 --- !u!135 &9075216275342404550
 SphereCollider:

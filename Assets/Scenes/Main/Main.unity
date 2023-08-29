@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -718,7 +718,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4481451182072672676, guid: d3ad3c0a9d12f5843afa938e1a2cf0ff, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4481451182072672676, guid: d3ad3c0a9d12f5843afa938e1a2cf0ff, type: 3}
       propertyPath: m_LocalPosition.x
@@ -797,6 +797,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scenesJson: {fileID: 4900000, guid: aad302152c0aa3c4e83bed0111b9a467, type: 3}
   dialoguesJson: {fileID: 4900000, guid: 480500ec6b4ce9a419bcec3099a4a88b, type: 3}
+  NPCList: []
+  newNPC: {fileID: 9075216275342404555, guid: f3c9c48c52d993142b7125d3ab4cc864, type: 3}
 --- !u!4 &1029801715
 Transform:
   m_ObjectHideFlags: 0
@@ -810,7 +812,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1041195332 stripped
 GameObject:
@@ -1460,68 +1462,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98a535bf37df23b4dae604363e50b9a2, type: 3}
---- !u!1001 &9075216276689223357
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 9075216275342404551, guid: f3c9c48c52d993142b7125d3ab4cc864, type: 3}
-      propertyPath: m_RootOrder
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 9075216275342404551, guid: f3c9c48c52d993142b7125d3ab4cc864, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -15
-      objectReference: {fileID: 0}
-    - target: {fileID: 9075216275342404551, guid: f3c9c48c52d993142b7125d3ab4cc864, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 9075216275342404551, guid: f3c9c48c52d993142b7125d3ab4cc864, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 9075216275342404551, guid: f3c9c48c52d993142b7125d3ab4cc864, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9075216275342404551, guid: f3c9c48c52d993142b7125d3ab4cc864, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9075216275342404551, guid: f3c9c48c52d993142b7125d3ab4cc864, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9075216275342404551, guid: f3c9c48c52d993142b7125d3ab4cc864, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9075216275342404551, guid: f3c9c48c52d993142b7125d3ab4cc864, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9075216275342404551, guid: f3c9c48c52d993142b7125d3ab4cc864, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9075216275342404551, guid: f3c9c48c52d993142b7125d3ab4cc864, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9075216275342404552, guid: f3c9c48c52d993142b7125d3ab4cc864, type: 3}
-      propertyPath: m_Name
-      value: NPC0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9075216275342404555, guid: f3c9c48c52d993142b7125d3ab4cc864, type: 3}
-      propertyPath: givenName
-      value: NPC0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9075216275342404555, guid: f3c9c48c52d993142b7125d3ab4cc864, type: 3}
-      propertyPath: events.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: f3c9c48c52d993142b7125d3ab4cc864, type: 3}

@@ -53,12 +53,12 @@ public class GlobalController : MonoBehaviour
             //find the npc and assign dialogues.
             NPC currentNPC = GameObject.Find(scenes.scenes[currentScene.buildIndex].NPCs[i].givenName).GetComponent<NPC>();
             //Debug.Log(dialogues.dialogues[0].states[0].lines[0]);
-            int queryState = GetNPCState(currentNPC.NPCIndex);
+            int queryState = GetNPCState(currentNPC.NPCDialogueIndex);
             
-            Debug.Log(queryState);
+            Debug.Log("query state: " + currentState + " " + queryState);
             currentNPC.script.Clear();
-            for (int j = 0; j < dialogues.dialogues[currentNPC.NPCIndex].states[queryState].lines.Count; j++){
-                string currentLine = dialogues.dialogues[currentNPC.NPCIndex].states[queryState].lines[j];
+            for (int j = 0; j < dialogues.dialogues[currentNPC.NPCDialogueIndex].states[queryState].lines.Count; j++){
+                string currentLine = dialogues.dialogues[currentNPC.NPCDialogueIndex].states[queryState].lines[j];
                 //Debug.Log(currentLine);
                 string parsedLine = ParseDialogue(currentLine);
                 //Debug.Log(parsedLine);
@@ -70,21 +70,22 @@ public class GlobalController : MonoBehaviour
     public static void CheckEvent(NPC nPC){
         // Events now handled by global controller find a way to make npcs move and modify scene gameobjects from here.
         int queryState = GetNPCState(nPC.NPCIndex);
-        if (dialogues.dialogues[nPC.NPCIndex].states[queryState].hasEvent){
+        if (dialogues.dialogues[nPC.NPCDialogueIndex].states[queryState].hasEvent){
             scenes.scenes[GlobalController.currentScene.buildIndex].sceneState++;
             currentState++;
             AssignDialogues();
         }
         //Not sure if this should happen here or in the NPC script, think about it!
         if (dialogues.dialogues[nPC.NPCIndex].states[queryState].hasMove){
-            List<MoveDirs> moveVectors = dialogues.dialogues[nPC.NPCIndex].states[queryState].moveTo;
+            List<MoveDirs> moveVectors = dialogues.dialogues[nPC.NPCDialogueIndex].states[queryState].moveTo;
             nPC.TriggerMove(moveVectors);
             //Debug.Log("NPC Moves: " + moveVector[0] + ", " + moveVector[1] + ", " + moveVector[2]);
         }
     }
 
     public static int GetNPCState(int NPCIndex){
-        if (currentState > dialogues.dialogues[NPCIndex].states.Count){
+        Debug.Log(dialogues.dialogues[NPCIndex].states.Count);
+        if (currentState >= dialogues.dialogues[NPCIndex].states.Count){
             return dialogues.dialogues[NPCIndex].states.Count - 1;
         }
         return currentState;

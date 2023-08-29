@@ -11,6 +11,13 @@
                     "dialogueIndex": 0,
                     "state": 0,
                     "location": [ -15, 1.5, 7 ]
+                },
+                {
+                    "givenName": "NPC1",
+                    "index": 1,
+                    "dialogueIndex": 2,
+                    "state": 0,
+                    "location": [ 15, 1.5, -7 ]
                 }
             ]
         },

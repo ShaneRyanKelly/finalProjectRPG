@@ -13,7 +13,7 @@ public class NPC : MonoBehaviour
     public int NPCIndex;
     public int NPCState;
     public int dialogueState;
-    public int dialogueIndex;
+    public int NPCDialogueIndex;
     public Dialogue dialogueList;
     public List<string> script = new List<string>();
     public List<Event> events = new List<Event>();
@@ -22,6 +22,7 @@ public class NPC : MonoBehaviour
     public GameObject canvas;
     GameObject currentCanvas;
     bool canvasActive = false;
+    private int dialogueIndex = 0;
     
     int moveSpeed = 1;
     bool eventTriggered = false;
@@ -39,7 +40,7 @@ public class NPC : MonoBehaviour
         Debug.Log("creating NPC");
         this.givenName = newNPCData.givenName;
         this.NPCIndex = newNPCData.index;
-        this.dialogueIndex =  newNPCData.dialogueIndex;
+        this.NPCDialogueIndex =  newNPCData.dialogueIndex;
         this.NPCState = newNPCData.state;
         this.location = new Vector3(newNPCData.location[0], newNPCData.location[1], newNPCData.location[2]);
         this.dialogueList = newDialogue;
