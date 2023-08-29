@@ -6,8 +6,11 @@
             "sceneState": 0,
             "NPCs": [
                 {
-                    "name": "NPC0",
-                    "index": 0
+                    "givenName": "NPC0",
+                    "index": 0,
+                    "dialogueIndex": 0,
+                    "state": 0,
+                    "location": [ -15, 1.5, 7 ]
                 }
             ]
         },
@@ -17,8 +20,10 @@
             "sceneState": 0,
             "NPCs": [
                 {
-                    "name": "Mom",
-                    "index": 1
+                    "givenName": "Mom",
+                    "index": 0,
+                    "dialogueIndex": 1,
+                    "state": 0
                 }
             ]
         }

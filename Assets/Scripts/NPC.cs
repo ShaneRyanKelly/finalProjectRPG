@@ -7,18 +7,26 @@ using TMPro;
 
 public class NPC : MonoBehaviour
 {
+    NPC thisNPC;
     bool inRange = false;
-    public int NPCIndex;
     public string givenName;
+    public int NPCIndex;
+    public int NPCState;
+    public int dialogueState;
+    public int dialogueIndex;
+    public Dialogue dialogueList;
     public List<string> script = new List<string>();
     public List<Event> events = new List<Event>();
+    public Vector3 location;
+    
     public GameObject canvas;
     GameObject currentCanvas;
     bool canvasActive = false;
-    int dialogueIndex = 0;
+    
     int moveSpeed = 1;
     bool eventTriggered = false;
     bool isMoving = false;
+    
     List<MoveDirs> moveToVectors;
     Vector3 moveDestination;
     Vector3 translateVector;
@@ -26,6 +34,18 @@ public class NPC : MonoBehaviour
     int eventIndex = 0;
     int moveIndex = 0;
     int modifyIndex = 0;
+
+    public void createNPC(NPC newNPC, NPCData newNPCData, Dialogue newDialogue){
+        Debug.Log("creating NPC");
+        this.givenName = newNPCData.givenName;
+        this.NPCIndex = newNPCData.index;
+        this.dialogueIndex =  newNPCData.dialogueIndex;
+        this.NPCState = newNPCData.state;
+        this.location = new Vector3(newNPCData.location[0], newNPCData.location[1], newNPCData.location[2]);
+        this.dialogueList = newDialogue;
+        //gameObject = newNPC;
+        Debug.Log("NPC Created");
+    }
 
     // Start is called before the first frame update
     void Start()
