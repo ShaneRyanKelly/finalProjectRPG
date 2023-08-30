@@ -19,7 +19,13 @@ public class GlobalController : MonoBehaviour
     public NPC newNPC;
     // Start is called before the first frame update
     void Awake(){
-        DontDestroyOnLoad(this.gameObject);
+        int numControllers = FindObjectsOfType(typeof(GlobalController)).Length;
+        if (numControllers != 1){
+            Destroy(this.gameObject);
+        }
+        else {
+            DontDestroyOnLoad(this.gameObject);
+        }
     }
     void Start()
     {
@@ -36,7 +42,7 @@ public class GlobalController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -52,15 +58,19 @@ public class GlobalController : MonoBehaviour
         Debug.Log(currentScene.buildIndex);
         for (int i = 0; i < scenes.scenes[currentScene.buildIndex].NPCs.Count; i++)
         {
+            NPCData currentNPCData = scenes.scenes[currentScene.buildIndex].NPCs[i];
             //find the npc and assign dialogues.
+            if (currentNPCData.state >= dialogues.dialogues[currentNPCData.dialogueIndex].states.Count){
+                continue;
+            }
             NPC currentNPC = GameObject.Find(scenes.scenes[currentScene.buildIndex].NPCs[i].givenName).GetComponent<NPC>();
             //Debug.Log(dialogues.dialogues[0].states[0].lines[0]);
             int queryState = GetNPCState(currentNPC.NPCDialogueIndex);
             
             Debug.Log("query state: " + currentState + " " + queryState);
             currentNPC.script.Clear();
-            for (int j = 0; j < dialogues.dialogues[currentNPC.NPCDialogueIndex].states[queryState].lines.Count; j++){
-                string currentLine = dialogues.dialogues[currentNPC.NPCDialogueIndex].states[queryState].lines[j];
+            for (int j = 0; j < dialogues.dialogues[currentNPC.NPCDialogueIndex].states[currentNPC.NPCState].lines.Count; j++){
+                string currentLine = dialogues.dialogues[currentNPC.NPCDialogueIndex].states[currentNPC.NPCState].lines[j];
                 //Debug.Log(currentLine);
                 string parsedLine = ParseDialogue(currentLine);
                 //Debug.Log(parsedLine);
@@ -71,18 +81,20 @@ public class GlobalController : MonoBehaviour
 
     public static void CheckEvent(NPC nPC){
         // Events now handled by global controller find a way to make npcs move and modify scene gameobjects from here.
-        int queryState = GetNPCState(nPC.NPCIndex);
+        int queryState = nPC.NPCState;
         if (dialogues.dialogues[nPC.NPCDialogueIndex].states[queryState].hasEvent){
-            scenes.scenes[GlobalController.currentScene.buildIndex].sceneState++;
-            currentState++;
+            nPC.NPCState++;
+            scenes.scenes[currentScene.buildIndex].NPCs[nPC.NPCIndex].state++;
             AssignDialogues();
         }
-        //Not sure if this should happen here or in the NPC script, think about it!
         if (dialogues.dialogues[nPC.NPCIndex].states[queryState].hasMove){
+            nPC.NPCState++;
+            scenes.scenes[currentScene.buildIndex].NPCs[nPC.NPCIndex].state++;
             List<MoveDirs> moveVectors = dialogues.dialogues[nPC.NPCDialogueIndex].states[queryState].moveTo;
             nPC.TriggerMove(moveVectors);
             //Debug.Log("NPC Moves: " + moveVector[0] + ", " + moveVector[1] + ", " + moveVector[2]);
         }
+        //Not sure if this should happen here or in the NPC script, think about it!
     }
 
     public static int GetNPCState(int NPCIndex){
@@ -100,11 +112,17 @@ public class GlobalController : MonoBehaviour
             NPCData newNPCData = scenes.scenes[currentScene.buildIndex].NPCs[i];
             Dialogue newDialogue = dialogues.dialogues[newNPCData.index];
             Vector3 location = new Vector3(newNPCData.location[0], newNPCData.location[1], newNPCData.location[2]);
-            newNPC = Instantiate(NPCPrefab, location, Quaternion.identity);
-            newNPC.name = newNPCData.givenName;
-            newNPC.createNPC(newNPC, newNPCData, newDialogue);
-            Debug.Log("new npc " + newNPC.location);
-            NPCList.Add(newNPC);
+            Debug.Log(newNPCData.state);
+            if (newNPCData.state <= newDialogue.states.Count){
+                newNPC = Instantiate(NPCPrefab, location, Quaternion.identity);
+                newNPC.name = newNPCData.givenName;
+                newNPC.createNPC(newNPC, newNPCData, newDialogue);
+                Debug.Log("new npc " + newNPC.location);
+                NPCList.Add(newNPC);
+            }
+            else {
+                
+            }
         }
         Debug.Log("instantiated NPCS");
     }
