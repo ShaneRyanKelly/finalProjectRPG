@@ -116,7 +116,7 @@ MonoBehaviour:
   NPCIndex: 0
   NPCState: 0
   dialogueState: 0
-  dialogueIndex: 0
+  NPCDialogueIndex: 0
   dialogueList:
     name: NPC0
     states:
@@ -142,6 +142,7 @@ MonoBehaviour:
   events: []
   location: {x: -15, y: 1.5, z: 7}
   canvas: {fileID: 3788106895109324621, guid: f950978dee94d3f4e92e594de905abec, type: 3}
+  nPCController: {fileID: 314957444095461265, guid: 0b42a7827d0578641b4c8b4d35aa81f6, type: 3}
 --- !u!135 &9075216275342404550
 SphereCollider:
   m_ObjectHideFlags: 0

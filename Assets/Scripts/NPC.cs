@@ -68,7 +68,7 @@ public class NPC : MonoBehaviour
         else if (canvasActive && !eventTriggered && Input.GetKeyDown("space")){
             Destroy(currentCanvas);
             canvasActive = false;
-            GlobalController.CheckEvent(this);
+            NPCController.CheckEvent(this);
             dialogueIndex = 0;
         }
         /*else if (eventTriggered && modifyIndex < events[eventIndex].fromObjects.Count && events[eventIndex].hasObject){
@@ -115,9 +115,29 @@ public class NPC : MonoBehaviour
         }
     }
 
-    void checkEvent(){
-        
+    /*public void AssignDialogues(){
+        for (int j = 0; j < dialogueList.states[NPCState].lines.Count; j++){
+                string currentLine = dialogueList.states[NPCState].lines[j];
+                //Debug.Log(currentLine);
+                string parsedLine = ParseDialogue(currentLine);
+                //Debug.Log(parsedLine);
+                currentNPC.script.Add(parsedLine);
+            }
     }
+
+    public void CheckEvent(){
+        // Events now handled by global controller find a way to make npcs move and modify scene gameobjects from here.
+        if (dialogueList.states[NPCState].hasEvent){
+            NPCState++;
+            AssignDialogues();
+        }
+        //Not sure if this should happen here or in the NPC script, think about it!
+        if (dialogueList.states[NPCState].hasMove){
+            List<MoveDirs> moveVectors = dialogueList.states[NPCState].moveTo;
+            TriggerMove(moveVectors);
+            //Debug.Log("NPC Moves: " + moveVector[0] + ", " + moveVector[1] + ", " + moveVector[2]);
+        }
+    }*/
 
     Vector3 Round(Vector3 vector3, int decimalPlaces)
 	{
