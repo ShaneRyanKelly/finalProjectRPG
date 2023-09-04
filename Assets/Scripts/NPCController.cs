@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class NPCController : MonoBehaviour
 {
@@ -9,6 +10,14 @@ public class NPCController : MonoBehaviour
     public NPC newNPC;
     public static SceneData sceneData;
     public static DialogueData dialogueData;
+    public GameObject canvas;
+    public GameObject currentCanvas;
+    public bool canvasActive = false;
+    public NPC localNPC;
+    public bool inRange = false;
+    int dialogueIndex = 0;
+    int moveIndex = 0;
+    
     void Awake(){
         int numControllers = FindObjectsOfType(typeof(NPCController)).Length;
         if (numControllers != 1){
@@ -27,7 +36,38 @@ public class NPCController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (inRange && !localNPC.isMoving && !canvasActive && Input.GetKeyDown("space")){
+            Debug.Log("canvas");
+            currentCanvas = Instantiate(canvas, new Vector3(0, 0, 0), Quaternion.identity);
+            canvasActive = true;
+            DisplayNextDialogue();
+        }
+        else if (inRange && !localNPC.isMoving && canvasActive && dialogueIndex < localNPC.script.Count && Input.GetKeyDown("space")){
+            DisplayNextDialogue();
+        }
+        else if (canvasActive && !localNPC.isMoving && Input.GetKeyDown("space")){
+            Destroy(currentCanvas);
+            canvasActive = false;
+            CheckEvent();
+            dialogueIndex = 0;
+        }
+        if (localNPC != null && localNPC.isMoving){
+            if (moveIndex < localNPC.moveVectors.Count){
+                localNPC.transform.Translate(localNPC.translateVector * Time.deltaTime * localNPC.moveSpeed);
+                if (Round(localNPC.transform.position, 0) == Round(localNPC.moveDestination, 0)){
+                    moveIndex++;
+                    if (moveIndex >= localNPC.moveVectors.Count){
+                        Destroy(localNPC.gameObject);
+                    }
+                    else {
+                        localNPC.translateVector = new Vector3(localNPC.moveVectors[moveIndex].moveVector[0], localNPC.moveVectors[moveIndex].moveVector[1], localNPC.moveVectors[moveIndex].moveVector[2]);
+                        localNPC.moveDestination = new Vector3(localNPC.moveVectors[moveIndex].destinations[0], localNPC.moveVectors[moveIndex].destinations[1], localNPC.moveVectors[moveIndex].destinations[2]);
+                    }
+                    
+                }
+            }
+            
+        }
     }
     public static void AssignDialogues(){
         List<NPCData> sceneNPCs = sceneData.NPCs;
@@ -52,24 +92,34 @@ public class NPCController : MonoBehaviour
         }
     }
 
-    public static void CheckEvent(NPC nPC){
+    public void CheckEvent(){
         // Events now handled by global controller find a way to make npcs move and modify scene gameobjects from here.
         List<NPCData> sceneNPCs = sceneData.NPCs;
-        int queryState = nPC.NPCState;
-        Dialogue currentDialogue = dialogueData.NPCs[nPC.NPCIndex];
+        int queryState =  localNPC.NPCState;
+        Dialogue currentDialogue = dialogueData.NPCs[localNPC.NPCIndex];
         if (currentDialogue.states[queryState].hasEvent){
-            nPC.NPCState++;
-            sceneNPCs[nPC.NPCIndex].state++;
+            localNPC.NPCState++;
+            sceneNPCs[localNPC.NPCIndex].state++;
             AssignDialogues();
         }
         if (currentDialogue.states[queryState].hasMove){
-            nPC.NPCState++;
-            sceneNPCs[nPC.NPCIndex].state++;
-            List<MoveDirs> moveVectors = currentDialogue.states[queryState].moveTo;
-            nPC.TriggerMove(moveVectors);
+            localNPC.NPCState++;
+            sceneNPCs[localNPC.NPCIndex].state++;
+            localNPC.moveVectors = currentDialogue.states[queryState].moveTo;
+            TriggerMove();
             //Debug.Log("NPC Moves: " + moveVector[0] + ", " + moveVector[1] + ", " + moveVector[2]);
         }
         //Not sure if this should happen here or in the NPC script, think about it!
+    }
+
+    void DisplayNextDialogue(){
+        GameObject nameTextObject = GameObject.Find("Name");
+        TextMeshProUGUI nameText = nameTextObject.GetComponent<TextMeshProUGUI>();
+        nameText.text = localNPC.givenName;
+        GameObject dialogueTextObject = GameObject.Find("Text");
+        TextMeshProUGUI dialogueText = dialogueTextObject.GetComponent<TextMeshProUGUI>();
+        dialogueText.text = localNPC.script[dialogueIndex];
+        dialogueIndex++;
     }
 
     public void InstantiateNPCs(){
@@ -130,5 +180,25 @@ public class NPCController : MonoBehaviour
         }
         //Debug.Log(rawString);
         return rawString;
+    }
+
+    Vector3 Round(Vector3 vector3, int decimalPlaces)
+	{
+		float multiplier = 1;
+		for (int i = 0; i < decimalPlaces; i++)
+		{
+			multiplier *= 10f;
+		}
+		return new Vector3(
+			Mathf.Round(vector3.x * multiplier) / multiplier,
+			Mathf.Round(vector3.y * multiplier) / multiplier,
+			Mathf.Round(vector3.z * multiplier) / multiplier);
+	}
+
+    public void TriggerMove(){
+        localNPC.isMoving = true;
+        localNPC.translateVector = new Vector3(localNPC.moveVectors[0].moveVector[0], localNPC.moveVectors[0].moveVector[1], localNPC.moveVectors[0].moveVector[2]);
+        localNPC.moveDestination = new Vector3(localNPC.moveVectors[0].destinations[0], localNPC.moveVectors[0].destinations[1], localNPC.moveVectors[0].destinations[2]);
+        
     }
 }
