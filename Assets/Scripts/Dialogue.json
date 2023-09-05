@@ -76,7 +76,7 @@
 							"hasChoices": false,
 							"Choices": [],
 							"ToStates": [
-								-1
+								4
 							],
 							"final": true
 						}

@@ -89,7 +89,9 @@ public class NPCController : MonoBehaviour
             Dialogue currentDialogue = dialogueData.NPCs[currentNPCData.index];
             NPC currentNPC = GameObject.Find(sceneNPCs[i].givenName).GetComponent<NPC>();
             //find the npc and assign dialogues.
-            if (currentNPCData.state >= currentDialogue.states.Count){
+            Debug.Log(currentNPC.givenName + " " + currentNPC.NPCState);
+            if (currentNPC.NPCState >= currentDialogue.states.Count){
+                Debug.Log("continue");
                 continue;
             }
             //Debug.Log(dialogues.states[0].lines[0]);
@@ -127,6 +129,8 @@ public class NPCController : MonoBehaviour
             AssignDialogues();
         }
         if (currentDialogue.states[queryState].hasMove){
+            Destroy(currentCanvas);
+            canvasActive = false;
             localNPC.NPCState = ToState;
             sceneNPCs[localNPC.NPCIndex].state = ToState;
             localNPC.moveVectors = currentDialogue.states[queryState].moveTo;
@@ -140,8 +144,15 @@ public class NPCController : MonoBehaviour
         if (currentDialogue.states[queryState].final){
             Destroy(currentCanvas);
             canvasActive = false;
-            localNPC.NPCState = ToState;
-            sceneNPCs[localNPC.NPCIndex].state = ToState;
+            if (ToState >= currentDialogue.states.Count){
+                Debug.Log("Destroy");
+                sceneNPCs[localNPC.NPCIndex].state = ToState;
+                Destroy(localNPC.gameObject);
+            }
+            else {
+                localNPC.NPCState = ToState;
+                sceneNPCs[localNPC.NPCIndex].state = ToState;
+            }
             AssignDialogues();
         }
         else {
