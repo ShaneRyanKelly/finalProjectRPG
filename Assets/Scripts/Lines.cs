@@ -9,4 +9,7 @@ public class Lines
     public bool hasEvent;
     public bool hasMove;
     public List<MoveDirs> moveTo;
+    public bool hasChoices;
+    public List<int> ToStates;
+    public bool final;
 }

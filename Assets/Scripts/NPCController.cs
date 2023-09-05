@@ -17,6 +17,7 @@ public class NPCController : MonoBehaviour
     public bool inRange = false;
     int dialogueIndex = 0;
     int moveIndex = 0;
+    bool awaitInput = false;
     
     void Awake(){
         int numControllers = FindObjectsOfType(typeof(NPCController)).Length;
@@ -36,50 +37,61 @@ public class NPCController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (inRange && !localNPC.isMoving && !canvasActive && Input.GetKeyDown("space")){
-            Debug.Log("canvas");
-            currentCanvas = Instantiate(canvas, new Vector3(0, 0, 0), Quaternion.identity);
-            canvasActive = true;
-            DisplayNextDialogue();
-        }
-        else if (inRange && !localNPC.isMoving && canvasActive && dialogueIndex < localNPC.script.Count && Input.GetKeyDown("space")){
-            DisplayNextDialogue();
-        }
-        else if (canvasActive && !localNPC.isMoving && Input.GetKeyDown("space")){
-            Destroy(currentCanvas);
-            canvasActive = false;
-            CheckEvent();
-            dialogueIndex = 0;
-        }
-        if (localNPC != null && localNPC.isMoving){
-            if (moveIndex < localNPC.moveVectors.Count){
-                localNPC.transform.Translate(localNPC.translateVector * Time.deltaTime * localNPC.moveSpeed);
-                if (Round(localNPC.transform.position, 0) == Round(localNPC.moveDestination, 0)){
-                    moveIndex++;
-                    if (moveIndex >= localNPC.moveVectors.Count){
-                        Destroy(localNPC.gameObject);
-                    }
-                    else {
-                        localNPC.translateVector = new Vector3(localNPC.moveVectors[moveIndex].moveVector[0], localNPC.moveVectors[moveIndex].moveVector[1], localNPC.moveVectors[moveIndex].moveVector[2]);
-                        localNPC.moveDestination = new Vector3(localNPC.moveVectors[moveIndex].destinations[0], localNPC.moveVectors[moveIndex].destinations[1], localNPC.moveVectors[moveIndex].destinations[2]);
-                    }
-                    
-                }
+        if (awaitInput){
+            Debug.Log("Awaiting input");
+            if (Input.GetKey(KeyCode.Alpha0)){
+                AssignState(0);
+                awaitInput = false;
             }
-            
+            else if (Input.GetKey(KeyCode.Alpha1)){
+                AssignState(1);
+                awaitInput = false;
+            }
+        }
+        else if (!awaitInput) {
+            if (inRange && !localNPC.isMoving && !canvasActive && Input.GetKeyDown("space")){
+                Debug.Log("canvas");
+                currentCanvas = Instantiate(canvas, new Vector3(0, 0, 0), Quaternion.identity);
+                canvasActive = true;
+                DisplayNextDialogue();
+            }
+            else if (inRange && !localNPC.isMoving && canvasActive && dialogueIndex < localNPC.script.Count && Input.GetKeyDown("space")){
+                DisplayNextDialogue();
+            }
+            else if (canvasActive && !localNPC.isMoving && Input.GetKeyDown("space")){
+                CheckEvent();
+            }
+            if (localNPC != null && localNPC.isMoving){
+                if (moveIndex < localNPC.moveVectors.Count){
+                    localNPC.transform.Translate(localNPC.translateVector * Time.deltaTime * localNPC.moveSpeed);
+                    if (Round(localNPC.transform.position, 0) == Round(localNPC.moveDestination, 0)){
+                        moveIndex++;
+                        if (moveIndex >= localNPC.moveVectors.Count){
+                            AssignDialogues();
+                        }
+                        else {
+                            localNPC.translateVector = new Vector3(localNPC.moveVectors[moveIndex].moveVector[0], localNPC.moveVectors[moveIndex].moveVector[1], localNPC.moveVectors[moveIndex].moveVector[2]);
+                            localNPC.moveDestination = new Vector3(localNPC.moveVectors[moveIndex].destinations[0], localNPC.moveVectors[moveIndex].destinations[1], localNPC.moveVectors[moveIndex].destinations[2]);
+                        }
+                        
+                    }
+                }
+                
+            }
         }
     }
-    public static void AssignDialogues(){
+    public void AssignDialogues(){
         List<NPCData> sceneNPCs = sceneData.NPCs;
+        dialogueIndex = 0;
         for (int i = 0; i < sceneNPCs.Count; i++)
         {
             NPCData currentNPCData = sceneNPCs[i];
             Dialogue currentDialogue = dialogueData.NPCs[currentNPCData.index];
+            NPC currentNPC = GameObject.Find(sceneNPCs[i].givenName).GetComponent<NPC>();
             //find the npc and assign dialogues.
             if (currentNPCData.state >= currentDialogue.states.Count){
                 continue;
             }
-            NPC currentNPC = GameObject.Find(sceneNPCs[i].givenName).GetComponent<NPC>();
             //Debug.Log(dialogues.states[0].lines[0]);
             currentNPC.script.Clear();
             for (int j = 0; j < currentDialogue.states[currentNPC.NPCState].lines.Count; j++){
@@ -92,24 +104,49 @@ public class NPCController : MonoBehaviour
         }
     }
 
+    private void AssignState(int state){
+        List<NPCData> sceneNPCs = sceneData.NPCs;
+        Dialogue currentDialogue = dialogueData.NPCs[localNPC.NPCIndex];
+        int queryState =  localNPC.NPCState;
+        localNPC.NPCState = currentDialogue.states[queryState].ToStates[state];
+        sceneNPCs[localNPC.NPCIndex].state = currentDialogue.states[queryState].ToStates[state];
+        AssignDialogues();
+        DisplayNextDialogue();
+    }
+
     public void CheckEvent(){
         // Events now handled by global controller find a way to make npcs move and modify scene gameobjects from here.
         List<NPCData> sceneNPCs = sceneData.NPCs;
         int queryState =  localNPC.NPCState;
         Dialogue currentDialogue = dialogueData.NPCs[localNPC.NPCIndex];
+        int ToState = currentDialogue.states[queryState].ToStates[0];
+        Debug.Log(currentDialogue.states[queryState].hasChoices);
         if (currentDialogue.states[queryState].hasEvent){
-            localNPC.NPCState++;
-            sceneNPCs[localNPC.NPCIndex].state++;
+            localNPC.NPCState = ToState;
+            sceneNPCs[localNPC.NPCIndex].state = ToState;
             AssignDialogues();
         }
         if (currentDialogue.states[queryState].hasMove){
-            localNPC.NPCState++;
-            sceneNPCs[localNPC.NPCIndex].state++;
+            localNPC.NPCState = ToState;
+            sceneNPCs[localNPC.NPCIndex].state = ToState;
             localNPC.moveVectors = currentDialogue.states[queryState].moveTo;
             TriggerMove();
             //Debug.Log("NPC Moves: " + moveVector[0] + ", " + moveVector[1] + ", " + moveVector[2]);
         }
-        //Not sure if this should happen here or in the NPC script, think about it!
+        if (currentDialogue.states[queryState].hasChoices){
+            // PresentChoices();
+            awaitInput = true;
+        }
+        if (currentDialogue.states[queryState].final){
+            Destroy(currentCanvas);
+            canvasActive = false;
+            localNPC.NPCState = ToState;
+            sceneNPCs[localNPC.NPCIndex].state = ToState;
+            AssignDialogues();
+        }
+        else {
+            DisplayNextDialogue();
+        }
     }
 
     void DisplayNextDialogue(){
@@ -180,6 +217,10 @@ public class NPCController : MonoBehaviour
         }
         //Debug.Log(rawString);
         return rawString;
+    }
+
+    private void PresentChoices(){
+
     }
 
     Vector3 Round(Vector3 vector3, int decimalPlaces)

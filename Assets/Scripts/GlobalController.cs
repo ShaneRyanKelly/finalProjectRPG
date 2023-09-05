@@ -40,7 +40,7 @@ public class GlobalController : MonoBehaviour
         Debug.Log("start global controller");
         nPCController.InstantiateScene(scenes.scenes[currentScene.buildIndex], dialogues.scenes[currentScene.buildIndex]);
         nPCController.InstantiateNPCs();
-        NPCController.AssignDialogues();
+        nPCController.AssignDialogues();
     }
 
     // Update is called once per frame
@@ -56,7 +56,7 @@ public class GlobalController : MonoBehaviour
         Debug.Log("scene load: " + currentScene.buildIndex);
         nPCController.InstantiateScene(scenes.scenes[currentScene.buildIndex], dialogues.scenes[currentScene.buildIndex]);
         nPCController.InstantiateNPCs();
-        NPCController.AssignDialogues();
+        nPCController.AssignDialogues();
     }
 
     /*public static void AssignDialogues(){

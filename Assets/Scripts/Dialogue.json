@@ -8,11 +8,56 @@
 							],
 							"hasEvent": true,
 							"hasMove": false,
-							"moveTo": []
+							"moveTo": [],
+							"hasChoices": false,
+							"Choices": [],
+							"ToStates": [ 
+								1 
+							],
+							"final": false
 						},
 						{
 							"lines": [
-								"Hello {playerName}, Hope you are enjoying the world!"
+								"Hello {playerName}, Hope you are enjoying the world!",
+								"Would you like to take a tour of town?"
+							],
+							"hasEvent": false,
+							"hasMove": false,
+							"moveTo": [{
+								"moveVector": [],
+								"destinations": []
+							}],
+							"hasChoices": true,
+							"Choices": [
+								"Yes",
+								"No"
+							],
+							"ToStates": [
+								2,
+								3
+							],
+							"final": false
+						},
+						{
+							"lines": [
+								"Oh. That's too bad, let me know if you ever want to take the tour!"
+							],
+							"hasEvent": true,
+							"hasMove": false,
+							"moveTo": [{
+								"moveVector": [],
+								"destinations": []
+							}],
+							"hasChoices": false,
+							"Choices": [],
+							"ToStates": [
+								0
+							],
+							"final": true
+						},
+						{
+							"lines": [
+								"Okay, let's get started then. Follow me!"
 							],
 							"hasEvent": false,
 							"hasMove": true,
@@ -27,7 +72,13 @@
 									1.5,
 									8.0
 								]
-							}]
+							}],
+							"hasChoices": false,
+							"Choices": [],
+							"ToStates": [
+								-1
+							],
+							"final": true
 						}
 					]
 				},
@@ -39,7 +90,13 @@
 						],
 						"hasEvent": false,
 						"hasMove": false,
-						"moveTo": []
+						"moveTo": [],
+						"hasChoices": false,
+						"Choices": [],
+						"ToStates": [
+							0
+						],
+						"final": true
 					}]
 				}
 			]
@@ -54,7 +111,13 @@
 					],
 					"hasEvent": false,
 					"hasMove": false,
-					"moveTo": []
+					"moveTo": [],
+					"hasChoices": false,
+					"Choices": [],
+					"ToStates": [
+						0
+					],
+					"final": true
 				}]
 			}]
 		}
