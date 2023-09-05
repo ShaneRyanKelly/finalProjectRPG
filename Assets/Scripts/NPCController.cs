@@ -71,6 +71,7 @@ public class NPCController : MonoBehaviour
                                 Debug.Log("destroy?");
                                 Destroy(localNPC.gameObject);
                             }
+                            localNPC.isMoving = false;
                             AssignDialogues();
                         }
                         else {

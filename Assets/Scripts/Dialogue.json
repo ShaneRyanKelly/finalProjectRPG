@@ -63,20 +63,82 @@
 							"hasMove": true,
 							"moveTo": [{
 								"moveVector": [
+									1.0,
 									0.0,
-									0.0,
-									1.0
+									0.0
 								],
 								"destinations": [
-									-15,
+									-9,
 									1.5,
-									8.0
+									7.0
 								]
 							}],
 							"hasChoices": false,
 							"Choices": [],
 							"ToStates": [
 								4
+							],
+							"final": true
+						},
+						{
+							"lines": [
+								"This is {friendName}'s house! But you already knew that! Lets head off to the next spot!"
+							],
+							"hasEvent": false,
+							"hasMove": true,
+							"moveTo": [{
+								"moveVector": [
+									0.0,
+									0.0,
+									1.0
+								],
+								"destinations": [
+									-9,
+									1.5,
+									16
+								]
+							},
+							{
+								"moveVector": [
+									-1.0,
+									0.0,
+									0.0
+								],
+								"destinations": [
+									-16,
+									1.5,
+									16
+								]	
+							}],
+							"hasChoices": false,
+							"Choices": [],
+							"ToStates": [
+								5
+							],
+							"final": true
+						},
+						{
+							"lines": [
+								"This is the big house, pretty cool huh?"
+							],
+							"hasEvent": false,
+							"hasMove": true,
+							"moveTo": [{
+								"moveVector": [
+									1.0,
+									0.0,
+									1.0
+								],
+								"destinations": [
+									13,
+									1.5,
+									16
+								]
+							}],
+							"hasChoices": false,
+							"Choices": [],
+							"ToStates": [
+								6
 							],
 							"final": true
 						}
