@@ -67,6 +67,10 @@ public class NPCController : MonoBehaviour
                     if (Round(localNPC.transform.position, 0) == Round(localNPC.moveDestination, 0)){
                         moveIndex++;
                         if (moveIndex >= localNPC.moveVectors.Count){
+                            if (dialogueData.NPCs[localNPC.NPCIndex].states.Count <= localNPC.NPCState){
+                                Debug.Log("destroy?");
+                                Destroy(localNPC.gameObject);
+                            }
                             AssignDialogues();
                         }
                         else {
@@ -87,7 +91,14 @@ public class NPCController : MonoBehaviour
         {
             NPCData currentNPCData = sceneNPCs[i];
             Dialogue currentDialogue = dialogueData.NPCs[currentNPCData.index];
-            NPC currentNPC = GameObject.Find(sceneNPCs[i].givenName).GetComponent<NPC>();
+            NPC currentNPC;
+            Debug.Log(sceneNPCs[i].givenName);
+            if (currentNPCData.state < currentDialogue.states.Count){
+                currentNPC = GameObject.Find(sceneNPCs[i].givenName).GetComponent<NPC>();
+            }
+            else{
+                continue;
+            }
             //find the npc and assign dialogues.
             Debug.Log(currentNPC.givenName + " " + currentNPC.NPCState);
             if (currentNPC.NPCState >= currentDialogue.states.Count){
@@ -144,15 +155,8 @@ public class NPCController : MonoBehaviour
         if (currentDialogue.states[queryState].final){
             Destroy(currentCanvas);
             canvasActive = false;
-            if (ToState >= currentDialogue.states.Count){
-                Debug.Log("Destroy");
-                sceneNPCs[localNPC.NPCIndex].state = ToState;
-                Destroy(localNPC.gameObject);
-            }
-            else {
-                localNPC.NPCState = ToState;
-                sceneNPCs[localNPC.NPCIndex].state = ToState;
-            }
+            localNPC.NPCState = ToState;
+            sceneNPCs[localNPC.NPCIndex].state = ToState;
             AssignDialogues();
         }
         else {
@@ -166,8 +170,10 @@ public class NPCController : MonoBehaviour
         nameText.text = localNPC.givenName;
         GameObject dialogueTextObject = GameObject.Find("Text");
         TextMeshProUGUI dialogueText = dialogueTextObject.GetComponent<TextMeshProUGUI>();
-        dialogueText.text = localNPC.script[dialogueIndex];
-        dialogueIndex++;
+        if (dialogueIndex < localNPC.script.Count){
+            dialogueText.text = localNPC.script[dialogueIndex];
+            dialogueIndex++;
+        }
     }
 
     public void InstantiateNPCs(){
