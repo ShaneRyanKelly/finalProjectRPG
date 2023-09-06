@@ -8,6 +8,7 @@ public class NPCController : MonoBehaviour
     public List<NPC> NPCList;
     public NPC NPCPrefab;
     public NPC newNPC;
+    private NPC movingNPC;
     public static SceneData sceneData;
     public static DialogueData dialogueData;
     public GameObject canvas;
@@ -61,22 +62,23 @@ public class NPCController : MonoBehaviour
             else if (canvasActive && !localNPC.isMoving && Input.GetKeyDown("space")){
                 CheckEvent();
             }
-            if (localNPC != null && localNPC.isMoving){
-                if (moveIndex < localNPC.moveVectors.Count){
-                    localNPC.transform.Translate(localNPC.translateVector * Time.deltaTime * localNPC.moveSpeed);
-                    if (Round(localNPC.transform.position, 0) == Round(localNPC.moveDestination, 0)){
+            else if (movingNPC != null && movingNPC.isMoving){
+                if (moveIndex < movingNPC.moveVectors.Count){
+                    movingNPC.transform.Translate(movingNPC.translateVector * Time.deltaTime * movingNPC.moveSpeed);
+                    if (Round(movingNPC.transform.position, 0) == Round(movingNPC.moveDestination, 0)){
                         moveIndex++;
-                        if (moveIndex >= localNPC.moveVectors.Count){
-                            if (dialogueData.NPCs[localNPC.NPCIndex].states.Count <= localNPC.NPCState){
+                        if (moveIndex >= movingNPC.moveVectors.Count){
+                            if (dialogueData.NPCs[movingNPC.NPCIndex].states.Count <= movingNPC.NPCState){
                                 Debug.Log("destroy?");
-                                Destroy(localNPC.gameObject);
+                                Destroy(movingNPC.gameObject);
                             }
-                            localNPC.isMoving = false;
+                            moveIndex = 0;
+                            movingNPC.isMoving = false;
                             AssignDialogues();
                         }
                         else {
-                            localNPC.translateVector = new Vector3(localNPC.moveVectors[moveIndex].moveVector[0], localNPC.moveVectors[moveIndex].moveVector[1], localNPC.moveVectors[moveIndex].moveVector[2]);
-                            localNPC.moveDestination = new Vector3(localNPC.moveVectors[moveIndex].destinations[0], localNPC.moveVectors[moveIndex].destinations[1], localNPC.moveVectors[moveIndex].destinations[2]);
+                            movingNPC.translateVector = new Vector3(movingNPC.moveVectors[moveIndex].moveVector[0], movingNPC.moveVectors[moveIndex].moveVector[1], movingNPC.moveVectors[moveIndex].moveVector[2]);
+                            movingNPC.moveDestination = new Vector3(movingNPC.moveVectors[moveIndex].destinations[0], movingNPC.moveVectors[moveIndex].destinations[1], movingNPC.moveVectors[moveIndex].destinations[2]);
                         }
                         
                     }
@@ -255,6 +257,9 @@ public class NPCController : MonoBehaviour
 	}
 
     public void TriggerMove(){
+        movingNPC = localNPC;
+        // find a way to save state and location if player leaves scene during move
+        // sceneData.NPCs[movingNPC.NPCIndex].location = movingNPC.moveVectors[movingNPC.moveVectors.Count - 1].moveVector;
         localNPC.isMoving = true;
         localNPC.translateVector = new Vector3(localNPC.moveVectors[0].moveVector[0], localNPC.moveVectors[0].moveVector[1], localNPC.moveVectors[0].moveVector[2]);
         localNPC.moveDestination = new Vector3(localNPC.moveVectors[0].destinations[0], localNPC.moveVectors[0].destinations[1], localNPC.moveVectors[0].destinations[2]);

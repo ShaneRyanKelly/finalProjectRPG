@@ -115,7 +115,6 @@ MonoBehaviour:
   givenName: NPC0
   NPCIndex: 0
   NPCState: 0
-  dialogueState: 0
   NPCDialogueIndex: 0
   dialogueList:
     name: NPC0
@@ -125,6 +124,9 @@ MonoBehaviour:
       hasEvent: 1
       hasMove: 0
       moveTo: []
+      hasChoices: 0
+      ToStates: 
+      final: 0
     - lines:
       - Hello {playerName}, Hope you are enjoying the world!
       hasEvent: 0
@@ -138,11 +140,16 @@ MonoBehaviour:
         - -15
         - 1.5
         - 8
+      hasChoices: 0
+      ToStates: 
+      final: 0
   script: []
-  events: []
   location: {x: -15, y: 1.5, z: 7}
-  canvas: {fileID: 3788106895109324621, guid: f950978dee94d3f4e92e594de905abec, type: 3}
-  nPCController: {fileID: 314957444095461265, guid: 0b42a7827d0578641b4c8b4d35aa81f6, type: 3}
+  moveSpeed: 3
+  isMoving: 0
+  moveVectors: []
+  moveDestination: {x: 0, y: 0, z: 0}
+  translateVector: {x: 0, y: 0, z: 0}
 --- !u!135 &9075216275342404550
 SphereCollider:
   m_ObjectHideFlags: 0

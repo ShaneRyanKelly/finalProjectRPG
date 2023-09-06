@@ -68,7 +68,7 @@
 									0.0
 								],
 								"destinations": [
-									-9,
+									-7.0,
 									1.5,
 									7.0
 								]
@@ -93,9 +93,9 @@
 									1.0
 								],
 								"destinations": [
-									-9,
+									-7.0,
 									1.5,
-									16
+									17
 								]
 							},
 							{
@@ -107,7 +107,7 @@
 								"destinations": [
 									-16,
 									1.5,
-									16
+									17
 								]	
 							}],
 							"hasChoices": false,
@@ -119,7 +119,8 @@
 						},
 						{
 							"lines": [
-								"This is the big house, pretty cool huh?"
+								"This is the town well. Legend has it that on cool Autumn nights when the moon is full one may hear the echos of a young girl crying out for help from the watery depths",
+								"Probably just a rumor though *shudders*. Onward!"
 							],
 							"hasEvent": false,
 							"hasMove": true,
@@ -127,18 +128,93 @@
 								"moveVector": [
 									1.0,
 									0.0,
-									1.0
+									0.0
 								],
 								"destinations": [
 									13,
 									1.5,
-									16
+									17
 								]
 							}],
 							"hasChoices": false,
 							"Choices": [],
 							"ToStates": [
 								6
+							],
+							"final": true
+						},
+						{
+							"lines": [
+								"This is the big house! Pretty cool huh?"
+							],
+							"hasEvent": false,
+							"hasMove": true,
+							"moveTo": [{
+								"moveVector": [
+									0.0,
+									0.0,
+									-1.0
+								],
+								"destinations": [
+									13,
+									1.5,
+									-4.0
+								]
+							},
+							{
+								"moveVector": [
+									-1.0,
+									0.0,
+									0.0
+								],
+								"destinations": [
+									-7,
+									1.5,
+									-4.0
+								]
+							}],
+							"hasChoices": false,
+							"Choices": [],
+							"ToStates": [
+								7
+							],
+							"final": true
+						},
+						{
+							"lines": [
+								"And finally we've arrived at your house, {playerName}!",
+								"Thanks for taking the tour, let me know if you ever want to see the sights again! Later!"
+							],
+							"hasEvent": false,
+							"hasMove": true,
+							"moveTo": [{
+								"moveVector": [
+									0.0,
+									0.0,
+									1.0
+								],
+								"destinations": [
+									-7,
+									1.5,
+									7.0
+								]
+							},
+							{
+								"moveVector": [
+									-1.0,
+									0.0,
+									0.0
+								],
+								"destinations": [
+									-16.0,
+									1.5,
+									7.0
+								]
+							}],
+							"hasChoices": false,
+							"Choices": [],
+							"ToStates": [
+								0
 							],
 							"final": true
 						}
