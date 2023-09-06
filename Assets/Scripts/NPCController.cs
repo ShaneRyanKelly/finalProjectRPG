@@ -145,6 +145,7 @@ public class NPCController : MonoBehaviour
         if (currentDialogue.states[queryState].hasMove){
             Destroy(currentCanvas);
             canvasActive = false;
+            Debug.Log("To state " + ToState);
             localNPC.NPCState = ToState;
             sceneNPCs[localNPC.NPCIndex].state = ToState;
             localNPC.moveVectors = currentDialogue.states[queryState].moveTo;
@@ -259,7 +260,8 @@ public class NPCController : MonoBehaviour
     public void TriggerMove(){
         movingNPC = localNPC;
         // find a way to save state and location if player leaves scene during move
-        // sceneData.NPCs[movingNPC.NPCIndex].location = movingNPC.moveVectors[movingNPC.moveVectors.Count - 1].moveVector;
+        sceneData.NPCs[movingNPC.NPCIndex].location = movingNPC.moveVectors[movingNPC.moveVectors.Count - 1].destinations;
+        Debug.Log(sceneData.NPCs[movingNPC.NPCIndex].location);
         localNPC.isMoving = true;
         localNPC.translateVector = new Vector3(localNPC.moveVectors[0].moveVector[0], localNPC.moveVectors[0].moveVector[1], localNPC.moveVectors[0].moveVector[2]);
         localNPC.moveDestination = new Vector3(localNPC.moveVectors[0].destinations[0], localNPC.moveVectors[0].destinations[1], localNPC.moveVectors[0].destinations[2]);
