@@ -40,7 +40,7 @@ public class GlobalController : MonoBehaviour
         Debug.Log("start global controller");
         nPCController.InstantiateScene(scenes.scenes[currentScene.buildIndex], dialogues.scenes[currentScene.buildIndex]);
         nPCController.InstantiateNPCs();
-        NPCController.AssignDialogues();
+        nPCController.AssignDialogues();
     }
 
     // Update is called once per frame
@@ -56,7 +56,7 @@ public class GlobalController : MonoBehaviour
         Debug.Log("scene load: " + currentScene.buildIndex);
         nPCController.InstantiateScene(scenes.scenes[currentScene.buildIndex], dialogues.scenes[currentScene.buildIndex]);
         nPCController.InstantiateNPCs();
-        NPCController.AssignDialogues();
+        nPCController.AssignDialogues();
     }
 
     /*public static void AssignDialogues(){
@@ -146,38 +146,6 @@ public class GlobalController : MonoBehaviour
             nPC.transform.Translate(translateVector * Time.deltaTime * 10.0f);
         }
     }*/
-
-    private static string ParseDialogue(string rawString){
-        // find embedded var and insert value
-        bool parsingVar = false;
-        string currentVar = "";
-        int varStart = 0;
-        int varEnd = 0;
-        char[] stringArray = rawString.ToCharArray();
-        //Debug.Log(rawString);
-        for (int i = 0; i < rawString.Length; i++){
-            if (stringArray[i] == '{'){
-                varStart = i;
-                parsingVar = true;
-                Debug.Log("parsing variable name");
-            }
-            else if (stringArray[i] == '}'){
-                varEnd = i+1;
-                //Debug.Log(rawString.Substring(varStart, varEnd-varStart));
-                rawString = rawString.Replace(rawString.Substring(varStart, varEnd-varStart), PlayerPrefs.GetString(currentVar));
-                currentVar = "";
-                varStart = 0;
-                varEnd = 0;
-                //Debug.Log("var end");
-                parsingVar = false;
-            }
-            else if (parsingVar){
-                currentVar += stringArray[i];
-            }
-        }
-        //Debug.Log(rawString);
-        return rawString;
-    }
 
     public string ReturnString(){
         return "Hello World";
