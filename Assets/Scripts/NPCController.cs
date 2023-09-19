@@ -42,6 +42,11 @@ public class NPCController : MonoBehaviour
         // Seperate DialogueController? Necessary? How to handle interactions with other objects in game?
         if (awaitInput){
             Debug.Log("Awaiting input");
+
+            // this is why i think we need DialogueController
+            if (!displayingChoices){
+                DisplayChoices();
+            }
             if (Input.GetKey(KeyCode.Alpha0)){
                 AssignState(0);
                 awaitInput = false;
@@ -168,6 +173,10 @@ public class NPCController : MonoBehaviour
         else {
             DisplayNextDialogue();
         }
+    }
+
+    void DisplayChoices(){
+        // code to display choices with
     }
 
     void DisplayNextDialogue(){
