@@ -15,8 +15,6 @@ public class GlobalController : MonoBehaviour
     public static Scene currentScene;
     public static int currentState;
     public List<NPC> NPCList;
-    public NPC NPCPrefab;
-    public NPC newNPC;
     public NPCController nPCController;
 
     // Start is called before the first frame update

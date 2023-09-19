@@ -11,8 +11,8 @@ public class NPCController : MonoBehaviour
     private NPC movingNPC;
     public static SceneData sceneData;
     public static DialogueData dialogueData;
-    public GameObject canvas;
-    public GameObject currentCanvas;
+    public DialogueContainer canvas;
+    public DialogueContainer currentCanvas;
     public bool canvasActive = false;
     public NPC localNPC;
     public bool inRange = false;
@@ -38,6 +38,8 @@ public class NPCController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // This could be refactored to use state machine
+        // Seperate DialogueController? Necessary? How to handle interactions with other objects in game?
         if (awaitInput){
             Debug.Log("Awaiting input");
             if (Input.GetKey(KeyCode.Alpha0)){
@@ -143,7 +145,7 @@ public class NPCController : MonoBehaviour
             AssignDialogues();
         }
         if (currentDialogue.states[queryState].hasMove){
-            Destroy(currentCanvas);
+            Destroy(currentCanvas.gameObject);
             canvasActive = false;
             Debug.Log("To state " + ToState);
             localNPC.NPCState = ToState;
@@ -157,7 +159,7 @@ public class NPCController : MonoBehaviour
             awaitInput = true;
         }
         if (currentDialogue.states[queryState].final){
-            Destroy(currentCanvas);
+            Destroy(currentCanvas.gameObject);
             canvasActive = false;
             localNPC.NPCState = ToState;
             sceneNPCs[localNPC.NPCIndex].state = ToState;
