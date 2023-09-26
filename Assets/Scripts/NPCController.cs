@@ -20,6 +20,9 @@ public class NPCController : MonoBehaviour
     int moveIndex = 0;
     bool awaitInput = false;
     
+    // this stays a bool
+    enum range { inRange, outRange };
+    enum state { inDialogue };
     void Awake(){
         int numControllers = FindObjectsOfType(typeof(NPCController)).Length;
         if (numControllers != 1){
@@ -44,7 +47,7 @@ public class NPCController : MonoBehaviour
             Debug.Log("Awaiting input");
 
             // this is why i think we need DialogueController
-            if (!displayingChoices){
+            if (false){
                 DisplayChoices();
             }
             if (Input.GetKey(KeyCode.Alpha0)){

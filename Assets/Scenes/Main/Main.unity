@@ -1469,6 +1469,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3702926379666644203, guid: 9497668df422b604b8dd54ce93909e3d, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 5477301283773697121, guid: f950978dee94d3f4e92e594de905abec, type: 3}
     - target: {fileID: 8397010550610786539, guid: 9497668df422b604b8dd54ce93909e3d, type: 3}
       propertyPath: m_Name
       value: NPCController

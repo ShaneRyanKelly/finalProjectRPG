@@ -47,7 +47,7 @@ MonoBehaviour:
   NPCList: []
   NPCPrefab: {fileID: 9075216275342404555, guid: f3c9c48c52d993142b7125d3ab4cc864, type: 3}
   newNPC: {fileID: 9075216275342404555, guid: f3c9c48c52d993142b7125d3ab4cc864, type: 3}
-  canvas: {fileID: 3788106895109324621, guid: f950978dee94d3f4e92e594de905abec, type: 3}
+  canvas: {fileID: 5477301283773697121, guid: f950978dee94d3f4e92e594de905abec, type: 3}
   currentCanvas: {fileID: 0}
   canvasActive: 0
   localNPC: {fileID: 0}
