@@ -1180,6 +1180,10 @@ PrefabInstance:
       propertyPath: nPCController
       value: 
       objectReference: {fileID: 3336958931907289191}
+    - target: {fileID: 5139113577357341520, guid: c97f5ed2e3366384ba2c909fd0c1832b, type: 3}
+      propertyPath: dialogueController
+      value: 
+      objectReference: {fileID: 798758592632424991, guid: d676aecffff54e0429cf42a42c594ecb, type: 3}
     - target: {fileID: 5139113577357341521, guid: c97f5ed2e3366384ba2c909fd0c1832b, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -1490,6 +1494,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f1cc4011b1c882498adb03c3b57d3f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &8584478382354197901
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8584478382800157673, guid: d676aecffff54e0429cf42a42c594ecb, type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8584478382800157673, guid: d676aecffff54e0429cf42a42c594ecb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8584478382800157673, guid: d676aecffff54e0429cf42a42c594ecb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8584478382800157673, guid: d676aecffff54e0429cf42a42c594ecb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8584478382800157673, guid: d676aecffff54e0429cf42a42c594ecb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8584478382800157673, guid: d676aecffff54e0429cf42a42c594ecb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8584478382800157673, guid: d676aecffff54e0429cf42a42c594ecb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8584478382800157673, guid: d676aecffff54e0429cf42a42c594ecb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8584478382800157673, guid: d676aecffff54e0429cf42a42c594ecb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8584478382800157673, guid: d676aecffff54e0429cf42a42c594ecb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8584478382800157673, guid: d676aecffff54e0429cf42a42c594ecb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8584478382800157678, guid: d676aecffff54e0429cf42a42c594ecb, type: 3}
+      propertyPath: m_Name
+      value: DialogueController
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d676aecffff54e0429cf42a42c594ecb, type: 3}
 --- !u!1001 &9115798867412338741
 PrefabInstance:
   m_ObjectHideFlags: 0

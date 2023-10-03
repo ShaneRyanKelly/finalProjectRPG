@@ -16,6 +16,7 @@ public class GlobalController : MonoBehaviour
     public static int currentState;
     public List<NPC> NPCList;
     public NPCController nPCController;
+    public DialogueController dialogueController;
 
     // Start is called before the first frame update
     void Awake(){
